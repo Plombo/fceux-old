@@ -67,7 +67,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="dxguid.lib winmm.lib dinput.lib ws2_32.lib ddraw.lib dsound.lib"
+				AdditionalDependencies="comctl32.lib vfw32.lib dxguid.lib winmm.lib dinput.lib ws2_32.lib ddraw.lib dsound.lib"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -361,10 +361,6 @@
 			</File>
 			<File
 				RelativePath="..\src\cheat.c"
-				>
-			</File>
-			<File
-				RelativePath="..\src\conddebug.c"
 				>
 			</File>
 			<File
@@ -1061,6 +1057,14 @@
 				<File
 					RelativePath="..\src\mappers\emu2413.c"
 					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							CompileAs="1"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\src\mappers\emu2413.h"
@@ -1156,10 +1160,6 @@
 				</File>
 				<File
 					RelativePath="..\src\input\oekakids.c"
-					>
-				</File>
-				<File
-					RelativePath="..\src\input\pads.c"
 					>
 				</File>
 				<File
@@ -1280,6 +1280,14 @@
 					<File
 						RelativePath="..\src\drivers\common\scale2x.c"
 						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CompileAs="2"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\src\drivers\common\scale2x.h"
@@ -1288,6 +1296,14 @@
 					<File
 						RelativePath="..\src\drivers\common\scale3x.c"
 						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CompileAs="2"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\src\drivers\common\scale3x.h"
@@ -1296,6 +1312,14 @@
 					<File
 						RelativePath="..\src\drivers\common\scalebit.c"
 						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CompileAs="2"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\src\drivers\common\scalebit.h"
@@ -1314,7 +1338,11 @@
 					Name="win"
 					>
 					<File
-						RelativePath="..\src\drivers\win\cdlogger.c"
+						RelativePath="..\src\drivers\win\aviout.c"
+						>
+					</File>
+					<File
+						RelativePath="..\src\drivers\win\basicbot.c"
 						>
 					</File>
 					<File
@@ -1363,14 +1391,6 @@
 					</File>
 					<File
 						RelativePath="..\src\drivers\win\common.h"
-						>
-					</File>
-					<File
-						RelativePath="..\src\drivers\win\debugger.c"
-						>
-					</File>
-					<File
-						RelativePath="..\src\drivers\win\debuggersp.c"
 						>
 					</File>
 					<File
@@ -1454,14 +1474,6 @@
 						>
 					</File>
 					<File
-						RelativePath="..\src\drivers\win\memview.c"
-						>
-					</File>
-					<File
-						RelativePath="..\src\drivers\win\memviewsp.c"
-						>
-					</File>
-					<File
 						RelativePath="..\src\drivers\win\netplay.c"
 						>
 						<FileConfiguration
@@ -1506,15 +1518,7 @@
 						>
 					</File>
 					<File
-						RelativePath="..\src\drivers\win\ntview.c"
-						>
-					</File>
-					<File
 						RelativePath="..\src\drivers\win\ppuview.c"
-						>
-					</File>
-					<File
-						RelativePath="..\src\drivers\win\pref.c"
 						>
 					</File>
 					<File
@@ -1523,10 +1527,6 @@
 					</File>
 					<File
 						RelativePath="..\src\drivers\win\res.rc"
-						>
-					</File>
-					<File
-						RelativePath="..\src\drivers\win\tracer.c"
 						>
 					</File>
 				</Filter>
@@ -1714,62 +1714,182 @@
 			<File
 				RelativePath="..\zlib\adler32.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\zlib\compress.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\zlib\crc32.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\zlib\deflate.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\zlib\gzio.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\zlib\infblock.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\zlib\infcodes.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\zlib\inffast.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\zlib\inflate.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\zlib\inftrees.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\zlib\infutil.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\zlib\trees.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\zlib\uncompr.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\zlib\unzip.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\zlib\zutil.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="1"
+					/>
+				</FileConfiguration>
 			</File>
 		</Filter>
 	</Files>
