@@ -1546,6 +1546,10 @@
 						>
 					</File>
 					<File
+						RelativePath="..\src\drivers\win\ntview.c"
+						>
+					</File>
+					<File
 						RelativePath="..\src\drivers\win\ppuview.c"
 						>
 					</File>
