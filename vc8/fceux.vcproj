@@ -1565,6 +1565,10 @@
 						RelativePath="..\src\drivers\win\resource.h"
 						>
 					</File>
+					<File
+						RelativePath="..\src\drivers\win\tracer.c"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
