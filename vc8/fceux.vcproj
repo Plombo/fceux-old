@@ -547,1147 +547,387 @@
 				Name="boards"
 				>
 				<File
-					RelativePath="..\src\boards\01-222.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\112.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\117.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\164.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\183.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\185.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\186.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\187.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\189.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\199.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\208.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\222.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\235.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\43.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\57.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\603-5052.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\8157.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\8237.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\88.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\90.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\95.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\__dummy_mapper.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\a9711.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\addrlatch.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\bmc13in1jy110.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\bmc42in1r.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\bmc64in1nr.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\bmc70in1.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\bonza.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\datalatch.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\deirom.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\dream.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\edu2000.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\fk23c.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\h2288.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\karaoke.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\kof97.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\konami-qtai.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\malee.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\mapinc.h"
+					RelativePath="..\src\boards\01-222.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\src\boards\mmc1.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\mmc3.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\boards\mmc3.h"
+					RelativePath="..\src\boards\112.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\src\boards\mmc5.c"
+					RelativePath="..\src\boards\117.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\boards\n-c22m.c"
+					RelativePath="..\src\boards\164.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\boards\n106.c"
+					RelativePath="..\src\boards\183.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\boards\novel.c"
+					RelativePath="..\src\boards\185.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\boards\sachen.c"
+					RelativePath="..\src\boards\186.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\boards\sheroes.c"
+					RelativePath="..\src\boards\187.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\boards\sl1632.c"
+					RelativePath="..\src\boards\189.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\boards\subor.c"
+					RelativePath="..\src\boards\199.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\boards\super24.c"
+					RelativePath="..\src\boards\208.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\boards\supervision.c"
+					RelativePath="..\src\boards\222.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\boards\t-262.c"
+					RelativePath="..\src\boards\235.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\boards\tengen.c"
+					RelativePath="..\src\boards\43.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\src\boards\57.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\603-5052.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\8157.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\8237.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\88.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\90.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\95.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\__dummy_mapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\a9711.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\addrlatch.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\bmc13in1jy110.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\bmc42in1r.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\bmc64in1nr.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\bmc70in1.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\bonza.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\datalatch.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\deirom.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\dream.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\edu2000.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\fk23c.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\h2288.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\karaoke.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\kof97.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\konami-qtai.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\malee.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\mmc1.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\mmc3.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\mmc5.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\n-c22m.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\n106.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\novel.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\sachen.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\sheroes.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\sl1632.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\subor.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\super24.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\supervision.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\t-262.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\boards\tengen.cpp"
+					>
 				</File>
 			</Filter>
 			<Filter
 				Name="mappers"
 				>
 				<File
-					RelativePath="..\src\mappers\15.c"
+					RelativePath="..\src\mappers\15.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\151.c"
+					RelativePath="..\src\mappers\151.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\16.c"
+					RelativePath="..\src\mappers\16.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\17.c"
+					RelativePath="..\src\mappers\17.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\18.c"
+					RelativePath="..\src\mappers\18.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\193.c"
+					RelativePath="..\src\mappers\193.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\200.c"
+					RelativePath="..\src\mappers\200.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\201.c"
+					RelativePath="..\src\mappers\201.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\202.c"
+					RelativePath="..\src\mappers\202.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\203.c"
+					RelativePath="..\src\mappers\203.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\204.c"
+					RelativePath="..\src\mappers\204.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\21.c"
+					RelativePath="..\src\mappers\21.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\212.c"
+					RelativePath="..\src\mappers\212.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\213.c"
+					RelativePath="..\src\mappers\213.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\214.c"
+					RelativePath="..\src\mappers\214.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\215.c"
+					RelativePath="..\src\mappers\215.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\217.c"
+					RelativePath="..\src\mappers\217.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\22.c"
+					RelativePath="..\src\mappers\22.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\225.c"
+					RelativePath="..\src\mappers\225.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\227.c"
+					RelativePath="..\src\mappers\227.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\228.c"
+					RelativePath="..\src\mappers\228.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\229.c"
+					RelativePath="..\src\mappers\229.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\23.c"
+					RelativePath="..\src\mappers\23.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\230.c"
+					RelativePath="..\src\mappers\230.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\231.c"
+					RelativePath="..\src\mappers\231.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\232.c"
+					RelativePath="..\src\mappers\232.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\234.c"
+					RelativePath="..\src\mappers\234.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\240.c"
+					RelativePath="..\src\mappers\240.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\241.c"
+					RelativePath="..\src\mappers\241.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\242.c"
+					RelativePath="..\src\mappers\242.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\244.c"
+					RelativePath="..\src\mappers\244.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\246.c"
+					RelativePath="..\src\mappers\246.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\24and26.c"
+					RelativePath="..\src\mappers\24and26.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\25.c"
+					RelativePath="..\src\mappers\25.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\255.c"
+					RelativePath="..\src\mappers\255.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\27.c"
+					RelativePath="..\src\mappers\27.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\32.c"
+					RelativePath="..\src\mappers\32.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\33.c"
+					RelativePath="..\src\mappers\33.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\40.c"
+					RelativePath="..\src\mappers\40.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\41.c"
+					RelativePath="..\src\mappers\41.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\42.c"
+					RelativePath="..\src\mappers\42.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\43.c"
+					RelativePath="..\src\mappers\43.cpp"
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
@@ -1714,7 +954,6 @@
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(InputName)1.obj"
 							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
-							CompileAs="2"
 						/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -1728,376 +967,128 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\46.c"
+					RelativePath="..\src\mappers\46.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\50.c"
+					RelativePath="..\src\mappers\50.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\51.c"
+					RelativePath="..\src\mappers\51.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\59.c"
+					RelativePath="..\src\mappers\59.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\6.c"
+					RelativePath="..\src\mappers\6.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\60.c"
+					RelativePath="..\src\mappers\60.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\61.c"
+					RelativePath="..\src\mappers\61.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\62.c"
+					RelativePath="..\src\mappers\62.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\65.c"
+					RelativePath="..\src\mappers\65.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\67.c"
+					RelativePath="..\src\mappers\67.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\68.c"
+					RelativePath="..\src\mappers\68.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\69.c"
+					RelativePath="..\src\mappers\69.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\71.c"
+					RelativePath="..\src\mappers\71.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\72.c"
+					RelativePath="..\src\mappers\72.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\73.c"
+					RelativePath="..\src\mappers\73.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\75.c"
+					RelativePath="..\src\mappers\75.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\76.c"
+					RelativePath="..\src\mappers\76.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\77.c"
+					RelativePath="..\src\mappers\77.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\79.c"
+					RelativePath="..\src\mappers\79.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\8.c"
+					RelativePath="..\src\mappers\8.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\80.c"
+					RelativePath="..\src\mappers\80.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\82.c"
+					RelativePath="..\src\mappers\82.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\83.c"
+					RelativePath="..\src\mappers\83.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\85.c"
+					RelativePath="..\src\mappers\85.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\86.c"
+					RelativePath="..\src\mappers\86.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\89.c"
+					RelativePath="..\src\mappers\89.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\91.c"
+					RelativePath="..\src\mappers\91.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\92.c"
+					RelativePath="..\src\mappers\92.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\97.c"
+					RelativePath="..\src\mappers\97.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\99.c"
+					RelativePath="..\src\mappers\99.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\__226.c"
+					RelativePath="..\src\mappers\__226.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\src\mappers\emu2413.c"
@@ -2107,7 +1098,18 @@
 						>
 						<Tool
 							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
 							CompileAs="1"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|x64"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
 						/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -2115,7 +1117,17 @@
 						>
 						<Tool
 							Name="VCCLCompilerTool"
-							CompileAs="1"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|x64"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
 						/>
 					</FileConfiguration>
 				</File>
@@ -2132,28 +1144,12 @@
 					>
 				</File>
 				<File
-					RelativePath="..\src\mappers\mmc2and4.c"
+					RelativePath="..\src\mappers\mmc2and4.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\mappers\simple.c"
+					RelativePath="..\src\mappers\simple.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\src\mappers\vrc7tone.h"
@@ -2192,196 +1188,72 @@
 				Name="input"
 				>
 				<File
-					RelativePath="..\src\input\arkanoid.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\input\bworld.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\input\cursor.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\input\fkb.c"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\src\input\fkb.h"
+					RelativePath="..\src\input\arkanoid.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\src\input\ftrainer.c"
+					RelativePath="..\src\input\bworld.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\input\hypershot.c"
+					RelativePath="..\src\input\cursor.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\input\mahjong.c"
+					RelativePath="..\src\input\fkb.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\input\mouse.c"
+					RelativePath="..\src\input\ftrainer.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\input\oekakids.c"
+					RelativePath="..\src\input\hypershot.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\input\powerpad.c"
+					RelativePath="..\src\input\mahjong.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\input\quiz.c"
+					RelativePath="..\src\input\mouse.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\input\shadow.c"
+					RelativePath="..\src\input\oekakids.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\src\input\powerpad.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\input\quiz.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\input\shadow.cpp"
+					>
 				</File>
 				<File
 					RelativePath="..\src\input\share.h"
 					>
 				</File>
 				<File
-					RelativePath="..\src\input\suborkb.c"
+					RelativePath="..\src\input\suborkb.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\src\input\suborkb.h"
 					>
 				</File>
 				<File
-					RelativePath="..\src\input\toprider.c"
+					RelativePath="..\src\input\toprider.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\src\input\zapper.c"
+					RelativePath="..\src\input\zapper.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							CompileAs="2"
-						/>
-					</FileConfiguration>
 				</File>
 			</Filter>
 			<Filter
@@ -2592,43 +1464,19 @@
 					Name="win"
 					>
 					<File
-						RelativePath="..\src\drivers\win\aviout.c"
+						RelativePath="..\src\drivers\win\aviout.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\src\drivers\win\basicbot.c"
+						RelativePath="..\src\drivers\win\basicbot.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\src\drivers\win\cdlogger.c"
+						RelativePath="..\src\drivers\win\cdlogger.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\src\drivers\win\cheat.c"
+						RelativePath="..\src\drivers\win\cheat.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
@@ -2655,7 +1503,6 @@
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\$(InputName)2.obj"
 								XMLDocumentationFileName="$(IntDir)\$(InputName)2.xdc"
-								CompileAs="2"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2677,35 +1524,19 @@
 						>
 					</File>
 					<File
-						RelativePath="..\src\drivers\win\debugger.c"
+						RelativePath="..\src\drivers\win\debugger.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\src\drivers\win\debuggersp.c"
+						RelativePath="..\src\drivers\win\debuggersp.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\src\drivers\win\debuggersp.h"
 						>
 					</File>
 					<File
-						RelativePath="..\src\drivers\win\input.c"
+						RelativePath="..\src\drivers\win\input.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
@@ -2732,7 +1563,6 @@
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\$(InputName)1.obj"
 								XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
-								CompileAs="2"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2750,32 +1580,16 @@
 						>
 					</File>
 					<File
-						RelativePath="..\src\drivers\win\joystick.c"
+						RelativePath="..\src\drivers\win\joystick.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\src\drivers\win\joystick.h"
 						>
 					</File>
 					<File
-						RelativePath="..\src\drivers\win\keyboard.c"
+						RelativePath="..\src\drivers\win\keyboard.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\src\drivers\win\keyboard.h"
@@ -2786,63 +1600,31 @@
 						>
 					</File>
 					<File
-						RelativePath="..\src\drivers\win\log.c"
+						RelativePath="..\src\drivers\win\log.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\src\drivers\win\log.h"
 						>
 					</File>
 					<File
-						RelativePath="..\src\drivers\win\main.c"
+						RelativePath="..\src\drivers\win\main.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\src\drivers\win\memview.c"
+						RelativePath="..\src\drivers\win\memview.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\src\drivers\win\memviewsp.c"
+						RelativePath="..\src\drivers\win\memviewsp.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\src\drivers\win\memviewsp.h"
 						>
 					</File>
 					<File
-						RelativePath="..\src\drivers\win\netplay.c"
+						RelativePath="..\src\drivers\win\netplay.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
@@ -2869,7 +1651,6 @@
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\$(InputName)1.obj"
 								XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
-								CompileAs="2"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2887,40 +1668,16 @@
 						>
 					</File>
 					<File
-						RelativePath="..\src\drivers\win\ntview.c"
+						RelativePath="..\src\drivers\win\ntview.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\src\drivers\win\ppuview.c"
+						RelativePath="..\src\drivers\win\ppuview.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\src\drivers\win\pref.c"
+						RelativePath="..\src\drivers\win\pref.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\src\drivers\win\pref.h"
@@ -2935,16 +1692,8 @@
 						>
 					</File>
 					<File
-						RelativePath="..\src\drivers\win\tracer.c"
+						RelativePath="..\src\drivers\win\tracer.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<Filter
 						Name="res"
