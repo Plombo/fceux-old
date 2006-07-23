@@ -356,43 +356,19 @@
 			Name="src"
 			>
 			<File
-				RelativePath="..\src\cart.c"
+				RelativePath="..\src\cart.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\cheat.c"
+				RelativePath="..\src\cheat.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\conddebug.c"
+				RelativePath="..\src\conddebug.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\config.c"
+				RelativePath="..\src\config.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -432,7 +408,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\crc32.c"
+				RelativePath="..\src\crc32.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -459,7 +435,6 @@
 						Name="VCCLCompilerTool"
 						ObjectFile="$(IntDir)\$(InputName)1.obj"
 						XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
-						CompileAs="2"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -473,284 +448,100 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\debug.c"
+				RelativePath="..\src\debug.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\endian.c"
+				RelativePath="..\src\endian.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\fceu.c"
+				RelativePath="..\src\fceu.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\fds.c"
+				RelativePath="..\src\fds.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\file.c"
+				RelativePath="..\src\file.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\filter.c"
+				RelativePath="..\src\filter.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\general.c"
+				RelativePath="..\src\general.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\src\ines.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\input.c"
+				RelativePath="..\src\input.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\md5.c"
+				RelativePath="..\src\md5.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\memory.c"
+				RelativePath="..\src\memory.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\movie.c"
+				RelativePath="..\src\movie.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\netplay.c"
+				RelativePath="..\src\netplay.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\nsf.c"
+				RelativePath="..\src\nsf.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\palette.c"
+				RelativePath="..\src\palette.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\ppu.c"
+				RelativePath="..\src\ppu.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\sound.c"
+				RelativePath="..\src\sound.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\state.c"
+				RelativePath="..\src\state.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\unif.c"
+				RelativePath="..\src\unif.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\video.c"
+				RelativePath="..\src\video.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\vsuni.c"
+				RelativePath="..\src\vsuni.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\wave.c"
+				RelativePath="..\src\wave.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\x6502.c"
+				RelativePath="..\src\x6502.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\src\xstring.c"
+				RelativePath="..\src\xstring.cpp"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="2"
-					/>
-				</FileConfiguration>
 			</File>
 			<Filter
 				Name="boards"
