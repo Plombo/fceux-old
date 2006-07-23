@@ -1,4 +1,4 @@
-AC_INIT([src/fceu.c])
+AC_INIT([src/fceu.cpp])
 
 AC_CANONICAL_HOST
 AC_CANONICAL_TARGET
