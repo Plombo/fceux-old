@@ -1614,6 +1614,10 @@
 						RelativePath="..\src\drivers\win\tracer.cpp"
 						>
 					</File>
+					<File
+						RelativePath="..\src\drivers\win\tracer.h"
+						>
+					</File>
 					<Filter
 						Name="res"
 						>
