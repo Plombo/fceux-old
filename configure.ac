@@ -19,17 +19,9 @@ dnl Check for zlib
 AC_CHECK_LIB([z], [zlibVersion],[], AC_MSG_ERROR([*** zlib not found!]))
 LIBS="$LIBS -lz"
 
-AC_ARG_WITH(nativewin32,
-                [AC_HELP_STRING([--with-nativewin32],
-                [use nativewin32])],  
-                use_nativewin32=$withval,
-                use_nativewin32="no")
-
-
 AM_CONDITIONAL(WIN32, false)
 AM_CONDITIONAL(UNIX, false)
 AM_CONDITIONAL(USE_SEXYAL, false)
-AM_CONDITIONAL(NATIVEWIN32,false)
 AM_CONDITIONAL(OPENGL, false)
 AM_CONDITIONAL(HAVE_GTK, false)
 AC_DEFINE([NETWORK],[1])
@@ -42,16 +34,6 @@ elif expr x"$target" : 'x.*mingw' > /dev/null; then
 AC_DEFINE([PSS_STYLE],[2])
 AC_DEFINE([WIN32])
 AM_CONDITIONAL(WIN32, true)
-
-if test x$use_nativewin32 = xyes; then
- LIBS="$LIBS -mwindows -lddraw -ldinput -ldsound -lgdi32 -ldxguid -lwinmm -lshell32 -lwsock32 -lcomdlg32 -lole32"
- AM_CONDITIONAL(NATIVEWIN32,true)
-else
- AM_CONDITIONAL(USE_SEXYAL, true)
- AC_DEFINE([USE_SEXYAL])
- LIBS="$LIBS -ldsound -lwinmm"
-fi
-
 
 else
 AM_CONDITIONAL(UNIX, true)
