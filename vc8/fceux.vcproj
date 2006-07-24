@@ -1263,23 +1263,15 @@
 					Name="common"
 					>
 					<File
-						RelativePath="..\src\drivers\common\args.c"
+						RelativePath="..\src\drivers\common\args.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\src\drivers\common\args.h"
 						>
 					</File>
 					<File
-						RelativePath="..\src\drivers\common\cheat.c"
+						RelativePath="..\src\drivers\common\cheat.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
@@ -1306,7 +1298,6 @@
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\$(InputName)1.obj"
 								XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
-								CompileAs="2"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1324,136 +1315,56 @@
 						>
 					</File>
 					<File
-						RelativePath="..\src\drivers\common\config.c"
+						RelativePath="..\src\drivers\common\config.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\src\drivers\common\config.h"
 						>
 					</File>
 					<File
-						RelativePath="..\src\drivers\common\hq2x.c"
+						RelativePath="..\src\drivers\common\hq2x.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\src\drivers\common\hq2x.h"
 						>
 					</File>
 					<File
-						RelativePath="..\src\drivers\common\hq3x.c"
+						RelativePath="..\src\drivers\common\hq3x.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\src\drivers\common\hq3x.h"
 						>
 					</File>
 					<File
-						RelativePath="..\src\drivers\common\scale2x.c"
+						RelativePath="..\src\drivers\common\scale2x.cpp"
 						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\src\drivers\common\scale2x.h"
 						>
 					</File>
 					<File
-						RelativePath="..\src\drivers\common\scale3x.c"
+						RelativePath="..\src\drivers\common\scale3x.cpp"
 						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\src\drivers\common\scale3x.h"
 						>
 					</File>
 					<File
-						RelativePath="..\src\drivers\common\scalebit.c"
+						RelativePath="..\src\drivers\common\scalebit.cpp"
 						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\src\drivers\common\scalebit.h"
 						>
 					</File>
 					<File
-						RelativePath="..\src\drivers\common\vidblit.c"
+						RelativePath="..\src\drivers\common\vidblit.cpp"
 						>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CompileAs="2"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\src\drivers\common\vidblit.h"
