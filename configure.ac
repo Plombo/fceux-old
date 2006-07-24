@@ -13,6 +13,7 @@ AC_PROG_INSTALL
 
 AC_DEFINE(_GNU_SOURCE)
 AC_CHECK_FUNC(asprintf, AC_DEFINE([HAVE_ASPRINTF]), [])
+AC_CHECK_FUNC(alloca, AC_DEFINE([HAVE_ALLOCA]), [])
 
 dnl Check for zlib
 AC_CHECK_LIB([z], [zlibVersion],[], AC_MSG_ERROR([*** zlib not found!]))
