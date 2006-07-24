@@ -43,7 +43,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../zlib"
+				AdditionalIncludeDirectories="../src/drivers/win/zlib"
 				PreprocessorDefinitions="WIN32;_DEBUG;MSVC;_CRT_SECURE_NO_DEPRECATE;_WIN32_WINDOWS=0x0410;WINVER=0x0410;NETWORK;LSB_FIRST;_USE_32BIT_TIME_T;FCEUDEF_DEBUGGER;_USE_SHARED_MEMORY_"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -1547,6 +1547,10 @@
 						>
 					</File>
 					<File
+						RelativePath="..\src\drivers\win\memview.h"
+						>
+					</File>
+					<File
 						RelativePath="..\src\drivers\win\memviewsp.cpp"
 						>
 					</File>
@@ -1603,7 +1607,15 @@
 						>
 					</File>
 					<File
+						RelativePath="..\src\drivers\win\ntview.h"
+						>
+					</File>
+					<File
 						RelativePath="..\src\drivers\win\ppuview.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\src\drivers\win\ppuview.h"
 						>
 					</File>
 					<File
@@ -1908,10 +1920,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\src\memview.h"
-					>
-				</File>
-				<File
 					RelativePath="..\src\movie.h"
 					>
 				</File>
@@ -1924,10 +1932,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\src\ntview.h"
-					>
-				</File>
-				<File
 					RelativePath="..\src\palette.h"
 					>
 				</File>
@@ -1937,10 +1941,6 @@
 				</File>
 				<File
 					RelativePath="..\src\pputile.h"
-					>
-				</File>
-				<File
-					RelativePath="..\src\ppuview.h"
 					>
 				</File>
 				<File
