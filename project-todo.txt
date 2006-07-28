@@ -14,7 +14,7 @@ Configfile parsing - lukas
 
 Merge garnet and sf repos - zeromus
  * Ensure gnome frontend is in repo
-
+ 
 Do we really need vc7 project? Cah4e3? - zeromus
 
 Source code docs cleaning - zeromus
@@ -24,6 +24,10 @@ Move to scons - lukas
 
 Freenode registration - lukas
  * homepage update
+
+Netplay - FUTURE STUFF
+  Move server code into tree
+  Ensure netplay compiles
 
 --strategic--
 
