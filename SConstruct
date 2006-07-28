@@ -11,5 +11,6 @@ if not conf.CheckLib('z'):
   Exit(1)
 
 env = conf.Finish()
+Export('env')
 
 SConscript(['src/SConscript'])
