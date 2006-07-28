@@ -56,6 +56,7 @@ if test x$use_nativewin32 = xno; then
  AM_PATH_SDL($SDL_VERSION, [:],
              AC_MSG_ERROR([*** SDL version $SDL_VERSION not found!]))
 
+ AC_LANG_CPLUSPLUS
  LIBS="$LIBS $SDL_LIBS"
  CFLAGS="-Wall -fomit-frame-pointer $CFLAGS $SDL_CFLAGS"
  CPPFLAGS="-Wall -fomit-frame-pointer $CPPFLAGS $SDL_CFLAGS"
@@ -83,7 +84,7 @@ if test x$use_nativewin32 = xno; then
  		AC_DEFINE([APPLEOPENGL])
  	])
  fi
- AC_DEFINE([SDL])
+ AC_DEFINE([SDL],[1])
 fi
 
 
