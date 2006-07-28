@@ -1,6 +1,9 @@
 Items to be completed before 2.0 release
 
 Linux build - soules
+ * clean-up scons files to manage SDL variables properly
+ * go through #def variables and figure out which we need and which we don't
+ * lots of testing and code clean-up
 
 Windows build - zeromus
  * verify rerecording
