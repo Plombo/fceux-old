@@ -1,7 +1,7 @@
 CCFLAGS= ''
 LINKFLAGS = ''
 
-env = Environment()
+env = Environment(CCFLAGS=CCFLAGS, LINKFLAGS=LINKFLAGS)
 conf = Configure(env)
 if not conf.CheckLib('SDL'):
   print 'Did not find libSDL.a or SDL.lib, exiting!'
