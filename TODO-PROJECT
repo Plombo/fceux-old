@@ -7,7 +7,7 @@ Windows build - zeromus
  * verify debugging
  * verify avi writing
 
-Investigate OSX build - ??
+Investigate OSX build [ http://www.lamer0.com/ ] - zeromus
 
 Commandline parsing - lukas
 Configfile parsing - lukas
@@ -26,10 +26,15 @@ Move to scons - lukas
 Freenode registration - lukas
  * homepage update
 
+Default hotkey philosophy (there are different philosophies from XD and TAS) - ALL
+
 Netplay - FUTURE STUFF
   Move server code into tree
   Ensure netplay compiles
 
 --strategic--
 
-Press Release - ??
+Release:
+ * Press Release - ??
+ * Homepage updates
+   - eliminate old news, add new links
