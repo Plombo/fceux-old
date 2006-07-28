@@ -10,7 +10,10 @@ Windows build - zeromus
 Investigate OSX build [ http://www.lamer0.com/ ] - zeromus
 
 Commandline parsing - lukas
+ * verify in windows - zeromus
+
 Configfile parsing - lukas
+ * verify in windows - zeromus
 
 Merge garnet and sf repos - zeromus
  * Ensure gnome frontend is in repo
