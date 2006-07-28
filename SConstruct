@@ -1,3 +1,6 @@
+CCFLAGS= ''
+LINKFLAGS = ''
+
 env = Environment()
 conf = Configure(env)
 if not conf.CheckLib('SDL'):
