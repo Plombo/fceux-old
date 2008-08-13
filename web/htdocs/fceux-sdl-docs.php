@@ -1,3 +1,9 @@
+<?php
+	$title = "General Documentation";
+	include("header.php");
+?>
+
+
 <html>
  <head>
   <title>FCEUX SDL Documentation</title>
