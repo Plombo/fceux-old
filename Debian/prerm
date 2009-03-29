@@ -1,3 +1,0 @@
-#!/bin/sh
-# Don't need to do anything; removing the files is sufficient
-exit 0
