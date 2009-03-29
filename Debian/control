@@ -1,0 +1,14 @@
+Package: fceux
+Version: 2.1
+Section: games
+Homepage: http://www.fceux.com/
+Priority: extra
+Maintainer: Jim Wyllie <jwyllie83@gmail.com>
+Depends: debhelper (>= 5), libsdl1.2-dev, libsdl1.2debian-alsa | libsdl1.2debian-all, liblua5.1-dev, zlib1g, zenity, python2.5
+Architecture: i386
+Description: Cross-platform NTSC and PAL Famicom/NES emulator
+ Fceux merges elements from FCE Ultra, FCEU rerecording, FCEUXD, FCEUXDSP, and
+ FCEU-mm into a single branch of FCEU. As the X implies, it is an
+ all-encompassing FCEU emulator that gives the best of all worlds for the
+ general player, the ROM-hacking community, and the Tool-Assisted Speedrun
+ Community. 
