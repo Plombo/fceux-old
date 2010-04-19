@@ -1,0 +1,1272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="iup3.0-rc3">
+      <UniqueIdentifier>{561c869a-8f0b-434b-aaf7-8abb0e74fc19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="iup3.0-rc3\src">
+      <UniqueIdentifier>{1aa4fdc4-7745-4286-a79e-9bcc30fef45a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="iup3.0-rc3\src\win">
+      <UniqueIdentifier>{a557db83-9d1b-41c6-801c-703372afbefa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="iup3.0-rc3\srccd">
+      <UniqueIdentifier>{ddce58b4-9290-4e4a-b17d-e1839beeacd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="iup3.0-rc3\srccontrols">
+      <UniqueIdentifier>{ceb4af69-b7e2-489a-89bb-7e5c9cdea9df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="iup3.0-rc3\srccontrols\color">
+      <UniqueIdentifier>{a5c6bd71-8d0b-40ce-8224-59f44f947f17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="iup3.0-rc3\srccontrols\matrix">
+      <UniqueIdentifier>{a7498e8c-0585-40c4-91e0-a57f40c2bf1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="iup3.0-rc3\srcgl">
+      <UniqueIdentifier>{76103eaa-9671-450d-969c-476d358434e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="iup3.0-rc3\srcim">
+      <UniqueIdentifier>{b107d858-faf5-4836-b6bc-2298e8feb81b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="iup3.0-rc3\srcimglib">
+      <UniqueIdentifier>{a9c19a7a-9596-4581-b867-d8e6604647c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="iup3.0-rc3\srclua5">
+      <UniqueIdentifier>{c739e16f-10de-4b4d-a8b7-d3b5e8a82218}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="iup3.0-rc3\srcole">
+      <UniqueIdentifier>{36ce00d0-d717-4177-b462-d70ef0bf6919}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="iup3.0-rc3\srcpplot">
+      <UniqueIdentifier>{b190d3a1-0e3f-4171-a7ee-d4a0d4cfb9cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="iup3.0-rc3\srcview">
+      <UniqueIdentifier>{1611cdbe-471e-455f-9e85-9c2097e9c986}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2">
+      <UniqueIdentifier>{1e1b9610-90a5-41e1-a39a-c68ba46fc4d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src">
+      <UniqueIdentifier>{0776c74e-1d60-4a98-b409-efe6396122d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\lua5">
+      <UniqueIdentifier>{ac8b48f5-ec37-4c99-8f04-d9b221c07642}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\sim">
+      <UniqueIdentifier>{4305b05f-da89-405c-974c-d2aa74366c03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2">
+      <UniqueIdentifier>{db5feac3-d4a0-4873-8cc2-220167477192}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\autofit">
+      <UniqueIdentifier>{0710689c-e0e7-4f4f-857f-7de7b7f341e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\base">
+      <UniqueIdentifier>{f0446e10-5e5a-423d-a879-d9aad59f3fea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\bdf">
+      <UniqueIdentifier>{29609b4c-682a-4df8-98f0-4bfbd4f101b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\cache">
+      <UniqueIdentifier>{871cd05f-2d80-449c-a6c0-e8ac64e883d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\cff">
+      <UniqueIdentifier>{50990907-8f71-4e4d-8798-11c07a78408d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\cid">
+      <UniqueIdentifier>{f3bcccd5-9565-4a77-9d13-4e6998d6575f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\gxvalid">
+      <UniqueIdentifier>{c0c0c5ed-ac22-4e3f-b92f-622bb5c39d84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\lzw">
+      <UniqueIdentifier>{9ccb4e17-13c6-42da-941c-e02f315594ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\otvalid">
+      <UniqueIdentifier>{aaf31ebb-8752-46ed-bf2b-ced2b679592e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\pcf">
+      <UniqueIdentifier>{385430ac-ce28-4831-8869-bfbf0a559963}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\psaux">
+      <UniqueIdentifier>{46beff14-1378-4e1b-a870-3199fdbb4569}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\pshinter">
+      <UniqueIdentifier>{a0042bfc-12e0-4378-9ad6-d25202f24ed2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\psnames">
+      <UniqueIdentifier>{0b421f81-5d4f-44b2-8d35-1d451049f19b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\raster">
+      <UniqueIdentifier>{52c0bb35-1b75-4d54-8d13-ce6ca5562641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\sfnt">
+      <UniqueIdentifier>{37263b9f-c2e8-481f-959d-46251b20b4e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\smooth">
+      <UniqueIdentifier>{bb68b955-0514-480e-af45-e33aa6806c46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\truetype">
+      <UniqueIdentifier>{682a854b-85b8-4d4f-bb2b-15ade2c9c595}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\type1">
+      <UniqueIdentifier>{18b34eae-21fb-4393-9b41-84635cc39dcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\type42">
+      <UniqueIdentifier>{52f78f8a-f1f0-4ad4-adef-d9cc2e4c3a3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\winfonts">
+      <UniqueIdentifier>{ea49b233-3b23-4f02-80f7-fbec1d8b1398}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\gzip">
+      <UniqueIdentifier>{31c41f82-aabd-4e92-bab0-5b1343c27537}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\freetype2\pfr">
+      <UniqueIdentifier>{c7720cf2-1d80-42c8-9e47-1345c52e5aa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\win32">
+      <UniqueIdentifier>{fcd62071-249b-43e0-9a85-f00107f2d33c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\drv">
+      <UniqueIdentifier>{f0a9be9c-74d2-482b-bb02-8659f91e8d15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cd5.2\src\intcgm">
+      <UniqueIdentifier>{22030e63-36c7-44cf-a109-bdf0186e2c7e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="iup3.0-rc3\src\iup.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_array.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_assert.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_attrib.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_box.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_button.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_callback.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_canvas.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_cbox.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_childtree.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_class.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_classattrib.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_classbase.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_colordlg.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_dialog.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_dlglist.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_filedlg.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_fill.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_focus.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_font.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_fontdlg.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_frame.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_func.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_getparam.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_globalattrib.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_hbox.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_image.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_key.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_label.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_layout.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_ledlex.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_ledparse.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_list.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_mask.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_maskmatch.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_maskparse.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_menu.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_messagedlg.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_names.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_normalizer.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_object.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_open.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_predial.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_progressbar.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_radio.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_register.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_sbox.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_scanf.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_show.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_spin.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_str.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_strmessage.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_table.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_tabs.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_text.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_timer.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_toggle.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_tree.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_user.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_val.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_vbox.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\iup_zbox.c">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_brush.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_button.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_canvas.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_clipboard.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_colordlg.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_common.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_dialog.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_draw.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_filedlg.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_focus.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_font.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_fontdlg.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_frame.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_globalattrib.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_handle.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_image.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_info.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_key.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_label.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_list.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_loop.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_menu.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_messagedlg.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_open.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_progressbar.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_tabs.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_text.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_timer.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_tips.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_toggle.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_tree.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwin_val.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwindows_help.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwindows_info.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\src\win\iupwindows_main.c">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccd\iup_cd.c">
+      <Filter>iup3.0-rc3\srccd</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\iup_cdutil.c">
+      <Filter>iup3.0-rc3\srccontrols</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\iup_cells.c">
+      <Filter>iup3.0-rc3\srccontrols</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\iup_colorbar.c">
+      <Filter>iup3.0-rc3\srccontrols</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\iup_controls.c">
+      <Filter>iup3.0-rc3\srccontrols</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\iup_dial.c">
+      <Filter>iup3.0-rc3\srccontrols</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\iup_gauge.c">
+      <Filter>iup3.0-rc3\srccontrols</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\iup_oldmask.c">
+      <Filter>iup3.0-rc3\srccontrols</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\iup_oldtabs.c">
+      <Filter>iup3.0-rc3\srccontrols</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\iup_oldval.c">
+      <Filter>iup3.0-rc3\srccontrols</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\color\iup_colorbrowser.c">
+      <Filter>iup3.0-rc3\srccontrols\color</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\color\iup_colorbrowserdlg.c">
+      <Filter>iup3.0-rc3\srccontrols\color</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\color\iup_colorhsi.c">
+      <Filter>iup3.0-rc3\srccontrols\color</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\matrix\iupmat_aux.c">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\matrix\iupmat_colres.c">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\matrix\iupmat_draw.c">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\matrix\iupmat_edit.c">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\matrix\iupmat_focus.c">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\matrix\iupmat_getset.c">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\matrix\iupmat_key.c">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\matrix\iupmat_mark.c">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\matrix\iupmat_mem.c">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\matrix\iupmat_mouse.c">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\matrix\iupmat_numlc.c">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\matrix\iupmat_scroll.c">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srccontrols\matrix\iupmatrix.c">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srcgl\iup_glcanvas_win.c">
+      <Filter>iup3.0-rc3\srcgl</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srcim\iup_im.c">
+      <Filter>iup3.0-rc3\srcim</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srcimglib\iup_image_library.c">
+      <Filter>iup3.0-rc3\srcimglib</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_button.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_canvas.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_cbox.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_cells.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_clipboard.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_colorbar.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_colorbrowser.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_colordlg.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_dial.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_dialog.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_filedlg.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_fill.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_fontdlg.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_frame.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_gauge.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_getcolor.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_getparam.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_glcanvas.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_hbox.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_image.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_imagergb.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_imagergba.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_item.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_label.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_list.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_mask.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_matrix.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_matrix_aux.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_menu.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_messagedlg.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_multiline.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_normalizer.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_olecontrol.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_pplot.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_progressbar.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_radio.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_sbox.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_scanf.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_separator.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_spin.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_spinbox.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_submenu.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_tabs.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_text.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_timer.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_toggle.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_tree.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_tree_aux.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_user.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_val.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_vbox.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\il_zbox.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\iuplua.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\iuplua_api.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\iuplua_cd.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\iuplua_controls.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\iuplua_glcanvas.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\iuplua_im.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\iuplua_imglib.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srclua5\iuplua_pplot.c">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srcole\iup_olecontrol.cpp">
+      <Filter>iup3.0-rc3\srcole</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srcole\tAmbientProperties.cpp">
+      <Filter>iup3.0-rc3\srcole</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srcole\tDispatch.cpp">
+      <Filter>iup3.0-rc3\srcole</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srcole\tLegacy.cpp">
+      <Filter>iup3.0-rc3\srcole</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srcole\tOleClientSite.cpp">
+      <Filter>iup3.0-rc3\srcole</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srcole\tOleControlSite.cpp">
+      <Filter>iup3.0-rc3\srcole</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srcole\tOleHandler.cpp">
+      <Filter>iup3.0-rc3\srcole</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srcole\tOleInPlaceFrame.cpp">
+      <Filter>iup3.0-rc3\srcole</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srcole\tOleInPlaceSite.cpp">
+      <Filter>iup3.0-rc3\srcole</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srcpplot\iup_pplot.cpp">
+      <Filter>iup3.0-rc3\srcpplot</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srcpplot\iupPPlot.cpp">
+      <Filter>iup3.0-rc3\srcpplot</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srcpplot\iupPPlotInteraction.cpp">
+      <Filter>iup3.0-rc3\srcpplot</Filter>
+    </ClCompile>
+    <ClCompile Include="iup3.0-rc3\srcview\iup_view.c">
+      <Filter>iup3.0-rc3\srcview</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\cd.c">
+      <Filter>cd5.2\src</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\cd_active.c">
+      <Filter>cd5.2\src</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\cd_attributes.c">
+      <Filter>cd5.2\src</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\cd_bitmap.c">
+      <Filter>cd5.2\src</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\cd_image.c">
+      <Filter>cd5.2\src</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\cd_primitives.c">
+      <Filter>cd5.2\src</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\cd_text.c">
+      <Filter>cd5.2\src</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\cd_util.c">
+      <Filter>cd5.2\src</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\cd_vectortext.c">
+      <Filter>cd5.2\src</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\rgb2map.c">
+      <Filter>cd5.2\src</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\wd.c">
+      <Filter>cd5.2\src</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\wdhdcpy.c">
+      <Filter>cd5.2\src</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\lua5\cdlua5.c">
+      <Filter>cd5.2\src\lua5</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\lua5\cdlua5_active.c">
+      <Filter>cd5.2\src\lua5</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\lua5\cdlua5_canvas.c">
+      <Filter>cd5.2\src\lua5</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\lua5\cdlua5ctx.c">
+      <Filter>cd5.2\src\lua5</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\lua5\cdluacontextplus5.c">
+      <Filter>cd5.2\src\lua5</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\lua5\cdluaim5.c">
+      <Filter>cd5.2\src\lua5</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\lua5\cdluapdf5.c">
+      <Filter>cd5.2\src\lua5</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\lua5\cdvoid5.c">
+      <Filter>cd5.2\src\lua5</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\sim\cd_truetype.c">
+      <Filter>cd5.2\src\sim</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\sim\cdfontex.c">
+      <Filter>cd5.2\src\sim</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\sim\sim.c">
+      <Filter>cd5.2\src\sim</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\sim\sim_linepolyfill.c">
+      <Filter>cd5.2\src\sim</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\sim\sim_other.c">
+      <Filter>cd5.2\src\sim</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\sim\sim_primitives.c">
+      <Filter>cd5.2\src\sim</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\sim\sim_text.c">
+      <Filter>cd5.2\src\sim</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\autofit\autofit.c">
+      <Filter>cd5.2\src\freetype2\autofit</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\base\ftbase.c">
+      <Filter>cd5.2\src\freetype2\base</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\base\ftbitmap.c">
+      <Filter>cd5.2\src\freetype2\base</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\base\ftglyph.c">
+      <Filter>cd5.2\src\freetype2\base</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\base\ftinit.c">
+      <Filter>cd5.2\src\freetype2\base</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\base\ftsystem.c">
+      <Filter>cd5.2\src\freetype2\base</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\bdf\bdf.c">
+      <Filter>cd5.2\src\freetype2\bdf</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\cache\ftcache.c">
+      <Filter>cd5.2\src\freetype2\cache</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\cff\cff.c">
+      <Filter>cd5.2\src\freetype2\cff</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\cid\type1cid.c">
+      <Filter>cd5.2\src\freetype2\cid</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\gxvalid\gxvalid.c">
+      <Filter>cd5.2\src\freetype2\gxvalid</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\lzw\ftlzw.c">
+      <Filter>cd5.2\src\freetype2\lzw</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\otvalid\otvalid.c">
+      <Filter>cd5.2\src\freetype2\otvalid</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\pcf\pcf.c">
+      <Filter>cd5.2\src\freetype2\pcf</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\psaux\psaux.c">
+      <Filter>cd5.2\src\freetype2\psaux</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\pshinter\pshinter.c">
+      <Filter>cd5.2\src\freetype2\pshinter</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\psnames\psnames.c">
+      <Filter>cd5.2\src\freetype2\psnames</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\raster\raster.c">
+      <Filter>cd5.2\src\freetype2\raster</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\sfnt\sfnt.c">
+      <Filter>cd5.2\src\freetype2\sfnt</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\smooth\smooth.c">
+      <Filter>cd5.2\src\freetype2\smooth</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\truetype\truetype.c">
+      <Filter>cd5.2\src\freetype2\truetype</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\type1\type1.c">
+      <Filter>cd5.2\src\freetype2\type1</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\type42\type42.c">
+      <Filter>cd5.2\src\freetype2\type42</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\winfonts\winfnt.c">
+      <Filter>cd5.2\src\freetype2\winfonts</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\gzip\ftgzip.c">
+      <Filter>cd5.2\src\freetype2\gzip</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\freetype2\pfr\pfr.c">
+      <Filter>cd5.2\src\freetype2\pfr</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\win32\cdwclp.c">
+      <Filter>cd5.2\src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\win32\cdwdbuf.c">
+      <Filter>cd5.2\src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\win32\cdwdib.c">
+      <Filter>cd5.2\src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\win32\cdwemf.c">
+      <Filter>cd5.2\src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\win32\cdwimg.c">
+      <Filter>cd5.2\src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\win32\cdwin.c">
+      <Filter>cd5.2\src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\win32\cdwnative.c">
+      <Filter>cd5.2\src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\win32\cdwprn.c">
+      <Filter>cd5.2\src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\win32\cdwwmf.c">
+      <Filter>cd5.2\src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\win32\wmf_emf.c">
+      <Filter>cd5.2\src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\drv\cdcgm.c">
+      <Filter>cd5.2\src\drv</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\drv\cddebug.c">
+      <Filter>cd5.2\src\drv</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\drv\cddgn.c">
+      <Filter>cd5.2\src\drv</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\drv\cddxf.c">
+      <Filter>cd5.2\src\drv</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\drv\cdirgb.c">
+      <Filter>cd5.2\src\drv</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\drv\cdmf.c">
+      <Filter>cd5.2\src\drv</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\drv\cdpdf.c">
+      <Filter>cd5.2\src\drv</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\drv\cdpicture.c">
+      <Filter>cd5.2\src\drv</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\drv\cdps.c">
+      <Filter>cd5.2\src\drv</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\drv\cgm.c">
+      <Filter>cd5.2\src\drv</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\intcgm\bparse.c">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\intcgm\circle.c">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\intcgm\ellipse.c">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\intcgm\intcgm1.c">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\intcgm\intcgm2.c">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\intcgm\intcgm4.c">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\intcgm\intcgm6.c">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\intcgm\list.c">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\intcgm\sism.c">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClCompile>
+    <ClCompile Include="cd5.2\src\intcgm\tparse.c">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="iup3.0-rc3\src\iup_array.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_assert.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_attrib.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_box.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_button.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_canvas.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_childtree.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_class.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_classbase.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_dialog.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_dlglist.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_drv.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_drvfont.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_drvinfo.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_focus.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_frame.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_func.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_globalattrib.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_image.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_key.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_label.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_layout.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_ledlex.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_list.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_mask.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_maskmatch.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_maskparse.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_menu.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_names.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_object.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_predial.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_progressbar.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_register.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_stdcontrols.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_str.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_strmessage.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_table.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_tabs.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_text.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_timer.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_toggle.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_tree.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\iup_val.h">
+      <Filter>iup3.0-rc3\src</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\win\iupwin_brush.h">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\win\iupwin_draw.h">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\win\iupwin_drv.h">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\win\iupwin_handle.h">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\src\win\iupwin_info.h">
+      <Filter>iup3.0-rc3\src\win</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srccontrols\iup_cdutil.h">
+      <Filter>iup3.0-rc3\srccontrols</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srccontrols\iup_controls.h">
+      <Filter>iup3.0-rc3\srccontrols</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srccontrols\color\iup_colorhsi.h">
+      <Filter>iup3.0-rc3\srccontrols\color</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srccontrols\matrix\iupmat_aux.h">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srccontrols\matrix\iupmat_cd.h">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srccontrols\matrix\iupmat_colres.h">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srccontrols\matrix\iupmat_def.h">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srccontrols\matrix\iupmat_draw.h">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srccontrols\matrix\iupmat_edit.h">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srccontrols\matrix\iupmat_focus.h">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srccontrols\matrix\iupmat_getset.h">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srccontrols\matrix\iupmat_key.h">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srccontrols\matrix\iupmat_mark.h">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srccontrols\matrix\iupmat_mem.h">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srccontrols\matrix\iupmat_mouse.h">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srccontrols\matrix\iupmat_numlc.h">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srccontrols\matrix\iupmat_scroll.h">
+      <Filter>iup3.0-rc3\srccontrols\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srclua5\il.h">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srclua5\il_controls.h">
+      <Filter>iup3.0-rc3\srclua5</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srcole\tAmbientProperties.h">
+      <Filter>iup3.0-rc3\srcole</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srcole\tDispatch.h">
+      <Filter>iup3.0-rc3\srcole</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srcole\tLegacy.h">
+      <Filter>iup3.0-rc3\srcole</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srcole\tOleClientSite.h">
+      <Filter>iup3.0-rc3\srcole</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srcole\tOleControlSite.h">
+      <Filter>iup3.0-rc3\srcole</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srcole\tOleHandler.h">
+      <Filter>iup3.0-rc3\srcole</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srcole\tOleInPlaceFrame.h">
+      <Filter>iup3.0-rc3\srcole</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srcole\tOleInPlaceSite.h">
+      <Filter>iup3.0-rc3\srcole</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srcpplot\iupPPlot.h">
+      <Filter>iup3.0-rc3\srcpplot</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srcpplot\iuppplot.hpp">
+      <Filter>iup3.0-rc3\srcpplot</Filter>
+    </ClInclude>
+    <ClInclude Include="iup3.0-rc3\srcpplot\iupPPlotInteraction.h">
+      <Filter>iup3.0-rc3\srcpplot</Filter>
+    </ClInclude>
+    <ClInclude Include="cd5.2\src\lua5\cdvoid5.h">
+      <Filter>cd5.2\src\lua5</Filter>
+    </ClInclude>
+    <ClInclude Include="cd5.2\src\sim\cd_truetype.h">
+      <Filter>cd5.2\src\sim</Filter>
+    </ClInclude>
+    <ClInclude Include="cd5.2\src\sim\sim.h">
+      <Filter>cd5.2\src\sim</Filter>
+    </ClInclude>
+    <ClInclude Include="cd5.2\src\sim\truetype.h">
+      <Filter>cd5.2\src\sim</Filter>
+    </ClInclude>
+    <ClInclude Include="cd5.2\src\win32\cdwin.h">
+      <Filter>cd5.2\src\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="cd5.2\src\drv\cgm.h">
+      <Filter>cd5.2\src\drv</Filter>
+    </ClInclude>
+    <ClInclude Include="cd5.2\src\intcgm\bparse.h">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClInclude>
+    <ClInclude Include="cd5.2\src\intcgm\circle.h">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClInclude>
+    <ClInclude Include="cd5.2\src\intcgm\ellipse.h">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClInclude>
+    <ClInclude Include="cd5.2\src\intcgm\intcgm.h">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClInclude>
+    <ClInclude Include="cd5.2\src\intcgm\intcgm2.h">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClInclude>
+    <ClInclude Include="cd5.2\src\intcgm\intcgm4.h">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClInclude>
+    <ClInclude Include="cd5.2\src\intcgm\intcgm6.h">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClInclude>
+    <ClInclude Include="cd5.2\src\intcgm\list.h">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClInclude>
+    <ClInclude Include="cd5.2\src\intcgm\sism.h">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClInclude>
+    <ClInclude Include="cd5.2\src\intcgm\tparse.h">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClInclude>
+    <ClInclude Include="cd5.2\src\intcgm\types.h">
+      <Filter>cd5.2\src\intcgm</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
