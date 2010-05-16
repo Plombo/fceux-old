@@ -57,6 +57,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <AdditionalIncludeDirectories>lua5.1.4\src;iup3.0-rc3/include;iup3.0-rc3/src;cd5.2/include;iup3.0-rc3/srccontrols;im3.5/include;cd5.2\src\sim;cd5.2\src\freetype2;cd5.2\src\pdflib\pdflib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <StringPooling>true</StringPooling>
+      <DisableSpecificWarnings>4996;4244;4113;4101;4018;4005;4805</DisableSpecificWarnings>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -344,7 +345,9 @@
     <ClCompile Include="cd5.2\src\win32\cdwnative.c" />
     <ClCompile Include="cd5.2\src\win32\cdwprn.c" />
     <ClCompile Include="cd5.2\src\win32\cdwwmf.c" />
-    <ClCompile Include="cd5.2\src\win32\wmf_emf.c" />
+    <ClCompile Include="cd5.2\src\win32\wmf_emf.c">
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4996</DisableSpecificWarnings>
+    </ClCompile>
     <ClCompile Include="cd5.2\src\drv\cdcgm.c" />
     <ClCompile Include="cd5.2\src\drv\cddebug.c" />
     <ClCompile Include="cd5.2\src\drv\cddgn.c" />
