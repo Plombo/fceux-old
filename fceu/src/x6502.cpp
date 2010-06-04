@@ -499,6 +499,7 @@ extern int test; test++;
 		   continue;
 	   }
    }
+
    #ifdef _S9XLUA_H
    CallRegisteredLuaMemHook(_PC, 1, 0, LUAMEMHOOK_EXEC);
    #endif

@@ -90,6 +90,8 @@ static uint32 DiskPtr;
 static int32 DiskSeekIRQ;
 uint8 SelectDisk,InDisk;
 
+uint64 disk_present_timestamp = 0;
+
 int last_disk_counter = FDS_MAX_INSERT_COUNTER;
 
 #define DC_INC    1
@@ -234,14 +236,16 @@ static void FDSFix(int a)
 			//   printf("IRQ: %d\n",scanline);
 		}
 	}
-	if(DiskSeekIRQ>0)
-	{
-		DiskSeekIRQ-=a;
-		if(DiskSeekIRQ<=0)
+	if (!emulate_fds_bios) {
+		if(DiskSeekIRQ>0)
 		{
-			if(FDSRegs[5]&0x80)
+			DiskSeekIRQ-=a;
+			if(DiskSeekIRQ<=0)
 			{
-				X6502_IRQBegin(FCEU_IQEXT2);
+				if(FDSRegs[5]&0x80)
+				{
+					X6502_IRQBegin(FCEU_IQEXT2);
+				}
 			}
 		}
 	}
@@ -253,12 +257,14 @@ static DECLFR(FDSRead4030)
 
 	/* Cheap hack. */
 	if(X.IRQlow&FCEU_IQEXT) ret|=1;
-	if(X.IRQlow&FCEU_IQEXT2) ret|=2;
+	if (!emulate_fds_bios)
+		if(X.IRQlow&FCEU_IQEXT2) ret|=2;
 
 	if(!fceuindbg)
 	{
 		X6502_IRQEnd(FCEU_IQEXT);
-		X6502_IRQEnd(FCEU_IQEXT2);
+		if (!emulate_fds_bios)
+			X6502_IRQEnd(FCEU_IQEXT2);
 	}
 	return ret;
 }
@@ -266,6 +272,10 @@ static DECLFR(FDSRead4030)
 static DECLFR(FDSRead4031)
 {
 	static uint8 z=0;
+
+	if (emulate_fds_bios)
+		return 0;
+
 	if(InDisk!=255)
 	{
 		z=diskdata[InDisk][DiskPtr];
@@ -286,24 +296,20 @@ static DECLFR(FDSRead4032)
 	static int lastcount = 1;
 
 	ret=X.DB&~7;
-	if(InDisk==255) {
-		ret|=5;
-		if (emulate_fds_bios && !force_eject) {
-			last_disk_counter--;
-			if (last_disk_counter == 0) {
-				last_disk_counter = FDS_MAX_INSERT_COUNTER;
+	//printf("Read4032: disk: %d timestamp: %llu timestamp: %llu\n", InDisk, disk_present_timestamp, timestampbase);
+
+	if (emulate_fds_bios) {
+		if (timestampbase >= disk_present_timestamp + 3000000) {
+			disk_present_timestamp = timestampbase;
+			if (InDisk == 255)
 				InDisk = SelectDisk;
-			}
-		}
-	} else {
-		if (emulate_fds_bios && !force_eject) {
-			last_disk_counter--;
-			if (last_disk_counter == 0) {
-				last_disk_counter = FDS_MAX_INSERT_COUNTER;
+			else
 				InDisk = 255;
-			}
 		}
 	}
+
+	if(InDisk==255)
+		ret|=5;
 
 	if(InDisk==255 || !(FDSRegs[5]&1) || (FDSRegs[5]&2))
 		ret|=2;
@@ -682,35 +688,39 @@ static DECLFW(FDSWrite)
 		break;
 	case 0x4023:break;
 	case 0x4024:
-		if(InDisk!=255 && !(FDSRegs[5]&0x4) && (FDSRegs[3]&0x1))
-		{
-			if(DiskPtr>=0 && DiskPtr<65500)
+		if (!emulate_fds_bios) {
+			if(InDisk!=255 && !(FDSRegs[5]&0x4) && (FDSRegs[3]&0x1))
 			{
-				if(writeskip) writeskip--;
-				else if(DiskPtr>=2)
+				if(DiskPtr>=0 && DiskPtr<65500)
 				{
-					DiskWritten=1;
-					diskdata[InDisk][DiskPtr-2]=V;
+					if(writeskip) writeskip--;
+					else if(DiskPtr>=2)
+					{
+						DiskWritten=1;
+						diskdata[InDisk][DiskPtr-2]=V;
+					}
 				}
 			}
 		}
 		break;
 	case 0x4025:
-		X6502_IRQEnd(FCEU_IQEXT2);
-		if(InDisk!=255)
-		{
-			if(!(V&0x40))
+		if (!emulate_fds_bios) {
+			X6502_IRQEnd(FCEU_IQEXT2);
+			if(InDisk!=255)
 			{
-				if(FDSRegs[5]&0x40 && !(V&0x10))
+				if(!(V&0x40))
 				{
-					DiskSeekIRQ=200;
-					DiskPtr-=2;
+					if(FDSRegs[5]&0x40 && !(V&0x10))
+					{
+						DiskSeekIRQ=200;
+						DiskPtr-=2;
+					}
+					if(DiskPtr<0) DiskPtr=0;
 				}
-				if(DiskPtr<0) DiskPtr=0;
+				if(!(V&0x4)) writeskip=2;
+				if(V&2) {DiskPtr=0;DiskSeekIRQ=200;}
+				if(V&0x40) DiskSeekIRQ=200;
 			}
-			if(!(V&0x4)) writeskip=2;
-			if(V&2) {DiskPtr=0;DiskSeekIRQ=200;}
-			if(V&0x40) DiskSeekIRQ=200;
 		}
 		setmirror(((V>>3)&1)^1);
 		break;
@@ -783,12 +793,24 @@ int FCEU_FDSBiosHook(X6502 *xp)
 		case FDS_BIOS_SET_FILE_COUNT2:
 			rc = FDS_BIOS_SetFileCount2(xp);
 			break;
+		case FDS_BIOS_CHECK_DISK_HEADER:
+			rc = FDS_BIOS_CheckDiskHeader(xp);
+			break;
+		case FDS_BIOS_GET_FILE_COUNT:
+			rc = FDS_BIOS_GetFileCount(xp);
+			break;
+		case FDS_BIOS_CHECK_FILE_TYPE:
+			rc = FDS_BIOS_CheckFileType(xp);
+			break;
+		case FDS_BIOS_FILE_MATCH_TEST:
+			rc = FDS_BIOS_FileMatchTest(xp);
+			break;
+		case FDS_BIOS_FILE_LOAD:
+			rc = FDS_BIOS_FileLoad(xp);
+			break;
 		default:
 			break;
 	}
-
-	if (rc == 1)
-		last_disk_counter = FDS_MAX_INSERT_COUNTER;
 
 	return rc;
 }

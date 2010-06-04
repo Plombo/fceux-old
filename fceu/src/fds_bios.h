@@ -86,7 +86,10 @@ int FDS_BIOS_AdjustFileCount(X6502 *xp);
 int FDS_BIOS_CheckFileCount(X6502 *xp);
 int FDS_BIOS_SetFileCount1(X6502 *xp);
 int FDS_BIOS_SetFileCount2(X6502 *xp);
-int FDS_BIOS_SkipLicense(X6502 *xp);
-int FDS_BIOS_SkipStartup(X6502 *xp);
+int FDS_BIOS_CheckDiskHeader(X6502 *xp);
+int FDS_BIOS_GetFileCount(X6502 *xp);
+int FDS_BIOS_CheckFileType(X6502 *xp);
+int FDS_BIOS_FileMatchTest(X6502 *xp);
+int FDS_BIOS_FileLoad(X6502 *xp);
 
 #endif /* __FDS_BIOS_H__ */

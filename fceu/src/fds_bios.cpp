@@ -52,6 +52,7 @@ extern int DiskWritten;
 extern int emulate_fds_bios;
 extern int last_disk_counter;
 
+static int real_file_count;
 uint8 *volume_header_block;
 uint8 *file_count_block;
 uint8 *file_header_blocks[FDS_MAX_FILES];
@@ -99,6 +100,11 @@ int FDS_BIOS_OpenDisk(uint8 diskno)
 		uint8 seq = p[1];
 		uint16 size = p[13] | (p[14] << 8);
 
+		if (seq != count) {
+			printf("seq != count\n");
+			seq = count;
+		}
+
 		count++;
 		file_header_blocks[seq] = p;
 		p += FDS_FILE_HEADER_BLOCK_SIZE;
@@ -113,6 +119,8 @@ int FDS_BIOS_OpenDisk(uint8 diskno)
 		file_data_blocks[seq] = p;
 		p += size + 1;
 	}
+
+	real_file_count = count;
 
 	/* Warn if the file count block says there are more files than we found.
 	 * It is not an error for it to say there are fewer files.
@@ -131,6 +139,7 @@ void FDS_BIOS_CloseDisk(void)
 
 	volume_header_block = NULL;
 	file_count_block = NULL;
+	real_file_count = 0;
 
 	for (i = 0; i < FDS_MAX_FILES; i++) {
 		file_header_blocks[i] = NULL;
@@ -157,6 +166,8 @@ ssize_t _FDS_CopyToCPU(uint16 addr, uint8 *data, size_t size)
 	int chunk_size;
 	int limit;
 	size_t rest;
+
+	printf("orig size: %d addr: %x\n", size, addr);
 
 	rest = size;
 	while (rest > 0) {
@@ -276,7 +287,7 @@ static int _FDS_CopyToPPU(uint16 addr, uint8 *data, size_t size)
 			start_addr = NAME_TABLE_2;
 			end_addr = NAME_TABLE_3;
 			ptr = vnapage[2];
-		} else if (addr < NAME_TABLE_END) { /* Name Table 2 */
+		} else if (addr < NAME_TABLE_END) { /* Name Table 3 */
 			start_addr = NAME_TABLE_3;
 			end_addr = NAME_TABLE_END;
 			ptr = vnapage[3];
@@ -434,22 +445,26 @@ static int _FDS_CheckDiskID(uint16 addr)
 	uint8 disk;
 	int i;
 
-	printf("in CheckDiskID\n");
-
 	/* Pull the requested ID from memory */
 	for (i = 0; i < FDS_DISKID_LENGTH; i++) {
 		id[i] = ARead[addr + i](addr + i);
 	}
 
-	for (disk = 0; disk < TotalSides; disk++) {
+	//disk = (InDisk + 1) % TotalSides;
+	//while (disk != InDisk) {
+	disk = 0;
+	while (disk < TotalSides) {
 		if (_FDS_Disk_CheckDiskID(disk, id) == FDS_STATUS_SUCCESS) {
 			break;
 		}
+
+		disk++;
+		//disk = (disk + 1) % TotalSides;
 	}
 
-	printf("disk: %d InDisk: %d SelectDisk: %d\n", disk, InDisk, SelectDisk);
-
 	if (disk < TotalSides) {
+		printf("Selecting disk %d side %c\n", (disk / 2) + 1,
+			disk % 2 ? 'B' : 'A');
 		status = FDS_STATUS_SUCCESS;
 		if (disk != InDisk) {
 			FDS_BIOS_CloseDisk();
@@ -475,8 +490,6 @@ static int _FDS_GetFileCount(X6502 *xp, uint8 *count)
 	ret_addr = GET_RETURN_ADDRESS(xp);
 	disk_id_addr = GET_ADDRESS(ret_addr);
 	ret_addr += 2;
-
-	printf("in GetFileCount\n");
 
 	if (emulate_fds_bios) {
 		status = _FDS_CheckDiskID(disk_id_addr);
@@ -550,8 +563,6 @@ int FDS_BIOS_LoadFiles(X6502 *xp, int initial_load)
 		goto fallthrough;
 	}
 
-	printf("in LoadFiles\n");
-
 	if (!initial_load) {
 		ret_addr = GET_RETURN_ADDRESS(xp);
 		disk_id_addr = GET_ADDRESS(ret_addr);
@@ -565,7 +576,6 @@ int FDS_BIOS_LoadFiles(X6502 *xp, int initial_load)
 
 		for(i = 0; i < FDS_LOAD_LIST_MAX; i++) {
 			load_list[i] = ARead[load_list_addr + i](load_list_addr + i);
-			printf("load_list[i] == %x\n", load_list[i]);
 			if (load_list[i] == 0xff) {
 				break;
 			}
@@ -708,8 +718,6 @@ int _FDS_WriteFile(X6502 *xp, uint8 seq)
 	file_header_addr = GET_ADDRESS(ret_addr + 2);
 	ret_addr += 4;
 
-	printf("in WriteFile\n");
-
 	if (emulate_fds_bios) {
 		status = _FDS_CheckDiskID(disk_id_addr);
 	}
@@ -723,6 +731,7 @@ int _FDS_WriteFile(X6502 *xp, uint8 seq)
 		goto done;
 	}
 
+	/* XXX real file count? */
 	file_count = file_count_block[1];
 	if (seq == 0xff) {
 		seq = file_count;
@@ -742,10 +751,12 @@ int _FDS_WriteFile(X6502 *xp, uint8 seq)
 
 	status = _FDS_SaveFile(seq, file_header_addr);
 	if (status != FDS_STATUS_SUCCESS) {
+		/* XXX real file count? */
 		file_count_block[1] = seq;
 		goto done;
 	}
 
+	/* XXX real file count? */
 	file_count_block[1] = seq + 1;
 
 	FDS_BIOS_CloseDisk();
@@ -814,6 +825,7 @@ int FDS_BIOS_GetDiskInfo(X6502 *xp)
 
 	disk_info_addr += FDS_DISKID_LENGTH;
 
+	/* XXX real file count? */
 	file_count = file_count_block[1];
 	BWrite[disk_info_addr](disk_info_addr, file_count);
 	disk_info_addr++;
@@ -975,16 +987,130 @@ fallthrough:
 	return handled;
 }
 
-int FDS_BIOS_SkipLicense(X6502 *xp)
+int FDS_BIOS_CheckDiskHeader(X6502 *xp)
 {
-	xp->A = 0x00;
+	uint8 status;
+	uint16 addr;
+	uint16 ret_addr;
 
-	return 0;
+	ret_addr = GET_RETURN_ADDRESS(xp);
+
+	addr = ((uint16)RAM[0x01] << 8) | RAM[0x00];
+
+	status = _FDS_CheckDiskID(addr);
+
+	//SET_RETURN_ADDRESS(xp, ret_addr);
+	xp->PC = ret_addr;
+	xp->S += 2;
+
+	SET_ACCUMULATOR(xp, status);
+
+	return 1;
 }
 
-int FDS_BIOS_SkipStartup(X6502 *xp)
+int FDS_BIOS_GetFileCount(X6502 *xp)
 {
-	xp->PC = 0xef59;
+	uint8 file_count;
+	uint16 ret_addr;
+
+	ret_addr = GET_RETURN_ADDRESS(xp);
+	file_count = file_count_block[1];
+
+	RAM[0x06] = file_count;
+	//SET_RETURN_ADDRESS(xp, ret_addr);
+	xp->PC = ret_addr;
+	xp->S += 2;
+
+	SET_ACCUMULATOR(xp, file_count);
+
+	return 1;
+}
+
+int FDS_BIOS_CheckFileType(X6502 *xp)
+{
+	uint8 file_type;
+	uint16 ret_addr;
+
+	ret_addr = GET_RETURN_ADDRESS(xp);
+	file_type = xp->A;
+
+	RAM[0x07] = file_type;
+
+	xp->PC = ret_addr;
+	xp->S += 2;
+
+	//xp->X = file_type + 0x21;
+	//xp->Y = xp->X;
+
+	SET_ACCUMULATOR(xp, 0);
+
+	return 1;
+}
+
+int FDS_BIOS_FileMatchTest(X6502 *xp)
+{
+	uint16 load_list_addr;
+	uint16 ret_addr;
+	uint8 boot_id;
+	uint8 file_id, current_id; 
+	uint8 current_file;
+	int i;
+	int load_file;
+
+	current_file = real_file_count - RAM[0x06];
+	ret_addr = GET_RETURN_ADDRESS(xp);
+	load_list_addr = ((uint16)RAM[0x03] << 8) | RAM[0x02];
+	boot_id = volume_header_block[FDS_BOOTID_INDEX];
+
+	current_id = file_header_blocks[current_file][2];
+	load_file = 0;
+	for(i = 0; i < FDS_LOAD_LIST_MAX; i++) {
+		file_id = ARead[load_list_addr + i](load_list_addr + i);
+		if (file_id == 0xff && i == 0 && current_id <= boot_id) {
+			load_file = 1;
+			break;
+		} else if (file_id == current_id) {
+			load_file = 1;
+			break;
+		} else if (file_id == 0xff) {
+			break;
+		}
+	}
+
+	if (load_file) {
+		RAM[0x09] = 0;
+		RAM[0x0e]++;
+	} else {
+		RAM[0x09] = 0xff;
+	}
+
+	xp->PC = ret_addr;
+	xp->S += 2;
+
+	SET_ACCUMULATOR(xp, 0);
+
+	return 1;
+}
+
+int FDS_BIOS_FileLoad(X6502 *xp)
+{
+	uint16 ret_addr;
+	int i;
+	int load_file;
+	int status = FDS_STATUS_SUCCESS;
+	uint8 current_file;
+
+	ret_addr = GET_RETURN_ADDRESS(xp);
+
+	if (RAM[0x09] == 0) {
+		current_file = real_file_count - RAM[0x06];
+		status = _FDS_LoadFile(current_file);
+	}
+
+	xp->PC = ret_addr;
+	xp->S += 2;
+
+	SET_ACCUMULATOR(xp, status);
 
 	return 1;
 }
