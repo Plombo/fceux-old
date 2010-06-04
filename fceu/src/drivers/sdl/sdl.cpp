@@ -109,6 +109,7 @@ Option         Value   Description\n\
 --playmov      f       Play back a recorded FCM/FM2 movie from filename f.\n\
 --pauseframe   x       Pause movie playback at frame x.\n\
 --fcmconvert   f       Convert fcm movie file f to fm2.\n\
+--hlefds       {0|1}  Use high-level emulation for FDS BIOS disk calls\n\
 --ripsubs      f       Convert movie's subtitles to srt\n\
 --subtitles    {0,1}   Enable subtitle display\n\
 --fourscore    {0,1}   Enable fourscore emulation\n\
@@ -739,6 +740,8 @@ int main(int argc, char *argv[])
 		InitGTKSubsystem(argc, argv);
 #endif
 
+	g_config->getOption("SDL.FdsBiosHLE", &emulate_fds_bios);
+
 	if(romIndex >= 0)
 	{
 		// load the specified game
@@ -747,6 +750,10 @@ int main(int argc, char *argv[])
 			DriverKill();
 			SDL_Quit();
 			return -1;
+		}
+
+		if (emulate_fds_bios  && GameInfo->type == GIT_FDS) {
+			FCEUI_printf("Using high-level emulation for FDS BIOS disk calls\n");
 		}
 	}
 	
