@@ -447,6 +447,7 @@ FCEUD_Update(uint8 *XBuf,
  */
 EMUFILE_FILE* FCEUD_UTF8_fstream(const char *fn, const char *m)
 {
+	EMUFILE_FILE *file;
 	std::ios_base::openmode mode = std::ios_base::binary;
 	if(!strcmp(m,"r") || !strcmp(m,"rb"))
 		mode |= std::ios_base::in;
@@ -460,7 +461,14 @@ EMUFILE_FILE* FCEUD_UTF8_fstream(const char *fn, const char *m)
 		mode |= std::ios_base::in | std::ios_base::out | std::ios_base::trunc;
 	else if(!strcmp(m,"a+") || !strcmp(m,"a+b"))
 		mode |= std::ios_base::in | std::ios_base::out | std::ios_base::app;
-    return new EMUFILE_FILE(fn, m);
+	
+	file = new EMUFILE_FILE(fn, m);
+	if (!file->get_fp()) {
+		delete file;
+		return NULL;
+	}
+
+	return file;
 	//return new std::fstream(fn,mode);
 }
 
