@@ -81,8 +81,8 @@ static uint8 *diskdatao[8]={0,0,0,0,0,0,0,0};
 
 uint8 *diskdata[8]={0,0,0,0,0,0,0,0};
 
+int automatic_disk_change = 1;
 int emulate_fds_bios = 0;
-int force_eject = 0;
 int TotalSides; //mbg merge 7/17/06 - unsignedectomy
 uint8 DiskWritten=0;    /* Set to 1 if disk was written to. */
 static uint8 writeskip;
@@ -91,8 +91,6 @@ static int32 DiskSeekIRQ;
 uint8 SelectDisk,InDisk;
 
 uint64 disk_present_timestamp = 0;
-
-int last_disk_counter = FDS_MAX_INSERT_COUNTER;
 
 #define DC_INC    1
 
@@ -163,26 +161,27 @@ static void FDSInit(void)
 
 void FCEU_FDSInsert(void)
 {
+	if (automatic_disk_change)
+		return;
+
 	if(FCEUI_EmulationPaused()) EmulationPaused |= 2;
 
 	if(FCEUMOV_Mode(MOVIEMODE_RECORD))
 		FCEUMOV_AddCommand(FCEUNPCMD_FDSINSERT);
 
 
-	force_eject = !force_eject;
-
-	if (force_eject)
+	if (InDisk != 255) {
 		InDisk = 255;
-	else
-		InDisk = SelectDisk;
-
-	if (emulate_fds_bios) {
-		last_disk_counter = FDS_MAX_INSERT_COUNTER;
-		FCEU_DispMessage("Disk %s", 0, (InDisk == 255) ? "Ejected" : "Inserted");
+		if (emulate_fds_bios)
+			FDS_BIOS_CloseDisk();
 	} else {
-		FCEU_DispMessage("Disk %d Side %s %s", 0, SelectDisk>>1,(SelectDisk&1)?"B":"A",
-		                 (InDisk == 255) ? "Ejected" : "Inserted");
+		InDisk = SelectDisk;
+		if (emulate_fds_bios)
+			FDS_BIOS_OpenDisk(InDisk);
 	}
+
+	FCEU_DispMessage("Disk %d Side %s %s", 0, SelectDisk>>1,(SelectDisk&1)?"B":"A",
+	                 (InDisk == 255) ? "Ejected" : "Inserted");
 }
 /*
 void FCEU_FDSEject(void)
@@ -203,11 +202,11 @@ void FCEU_FDSSelect(void)
 		return;
 	}
 
-	if (emulate_fds_bios) {
+	if (automatic_disk_change) {
 		return;
 	}
 
-	if(InDisk!=255 || !force_eject)
+	if(InDisk!=255)
 	{
 		FCEU_DispMessage("Eject disk before selecting.",0);
 		return;
@@ -298,7 +297,7 @@ static DECLFR(FDSRead4032)
 	ret=X.DB&~7;
 	//printf("Read4032: disk: %d timestamp: %llu timestamp: %llu\n", InDisk, disk_present_timestamp, timestampbase);
 
-	if (emulate_fds_bios) {
+	if (emulate_fds_bios && automatic_disk_change) {
 		if (timestampbase >= disk_present_timestamp + 3000000) {
 			disk_present_timestamp = timestampbase;
 			if (InDisk == 255)

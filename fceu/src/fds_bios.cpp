@@ -50,6 +50,7 @@ extern int TotalSides;
 extern int DiskWritten;
 
 extern int emulate_fds_bios;
+extern int automatic_disk_change;
 extern int last_disk_counter;
 
 static int real_file_count;
@@ -450,6 +451,12 @@ static int _FDS_CheckDiskID(uint16 addr)
 		id[i] = ARead[addr + i](addr + i);
 	}
 
+	if (!automatic_disk_change) {
+		if (InDisk != 255)
+			return _FDS_Disk_CheckDiskID(InDisk, id);
+		return FDS_STATUS_NO_DISK;
+	}
+
 	//disk = (InDisk + 1) % TotalSides;
 	//while (disk != InDisk) {
 	disk = 0;
@@ -471,7 +478,6 @@ static int _FDS_CheckDiskID(uint16 addr)
 			SelectDisk = disk;
 			InDisk = disk;
 			//InDisk = 255;
-			last_disk_counter = FDS_MAX_INSERT_COUNTER;
 			FDS_BIOS_OpenDisk(disk);
 		}
 	}
