@@ -130,6 +130,10 @@ int FDS_BIOS_OpenDisk(uint8 diskno)
 		fprintf(stderr, "File count is %d, but there are only %d\n",
 			file_count_block[1], count);
 	}
+
+	SelectDisk = diskno;
+	if (automatic_disk_change)
+		InDisk = 255;
 done:
 	return status;
 }
@@ -453,36 +457,28 @@ static int _FDS_CheckDiskID(uint16 addr)
 
 	if (!automatic_disk_change) {
 		if (InDisk != 255)
-			return _FDS_Disk_CheckDiskID(InDisk, id);
-		return FDS_STATUS_NO_DISK;
+			return _FDS_Disk_CheckDiskID(SelectDisk, id);
+		else
+			return FDS_STATUS_NO_DISK;
 	}
 
-	//disk = (InDisk + 1) % TotalSides;
-	//while (disk != InDisk) {
-	disk = 0;
-	while (disk < TotalSides) {
-		if (_FDS_Disk_CheckDiskID(disk, id) == FDS_STATUS_SUCCESS) {
+	for (disk = SelectDisk + 1; disk != SelectDisk; disk++) {
+		if (disk == TotalSides)
+			disk = 0;
+		if (_FDS_Disk_CheckDiskID(disk, id) == FDS_STATUS_SUCCESS)
 			break;
-		}
-
-		disk++;
-		//disk = (disk + 1) % TotalSides;
 	}
 
 	if (disk < TotalSides) {
 		printf("Selecting disk %d side %c\n", (disk / 2) + 1,
 			disk % 2 ? 'B' : 'A');
 		status = FDS_STATUS_SUCCESS;
-		if (disk != InDisk) {
+		if (disk != SelectDisk) {
 			FDS_BIOS_CloseDisk();
-			SelectDisk = disk;
-			InDisk = disk;
-			//InDisk = 255;
 			FDS_BIOS_OpenDisk(disk);
 		}
 	}
 
-done:
 	return status;
 }
 
@@ -633,6 +629,9 @@ int FDS_BIOS_LoadFiles(X6502 *xp, int initial_load)
 done:
 	if (!initial_load)
 		xp->Y = files_found;
+
+	if (automatic_disk_change)
+		InDisk = 255;
 fail:
 	if (!initial_load) {
 		SET_RETURN_ADDRESS(xp, ret_addr);
@@ -766,7 +765,7 @@ int _FDS_WriteFile(X6502 *xp, uint8 seq)
 	file_count_block[1] = seq + 1;
 
 	FDS_BIOS_CloseDisk();
-	FDS_BIOS_OpenDisk(InDisk);
+	FDS_BIOS_OpenDisk(SelectDisk);
 
 done:
 	SET_RETURN_ADDRESS(xp, ret_addr);
@@ -914,7 +913,7 @@ int FDS_BIOS_AdjustFileCount(X6502 *xp)
 	}
 
 	FDS_BIOS_CloseDisk();
-	FDS_BIOS_OpenDisk(InDisk);
+	FDS_BIOS_OpenDisk(SelectDisk);
 
 fallthrough:
 	return handled;
@@ -941,7 +940,7 @@ int FDS_BIOS_CheckFileCount(X6502 *xp)
 	}
 
 	FDS_BIOS_CloseDisk();
-	FDS_BIOS_OpenDisk(InDisk);
+	FDS_BIOS_OpenDisk(SelectDisk);
 
 fallthrough:
 	return handled;
@@ -964,7 +963,7 @@ int FDS_BIOS_SetFileCount1(X6502 *xp)
 	}
 
 	FDS_BIOS_CloseDisk();
-	FDS_BIOS_OpenDisk(InDisk);
+	FDS_BIOS_OpenDisk(SelectDisk);
 
 fallthrough:
 	return handled;
@@ -987,7 +986,7 @@ int FDS_BIOS_SetFileCount2(X6502 *xp)
 	}
 
 	FDS_BIOS_CloseDisk();
-	FDS_BIOS_OpenDisk(InDisk);
+	FDS_BIOS_OpenDisk(SelectDisk);
 
 fallthrough:
 	return handled;
@@ -1003,7 +1002,10 @@ int FDS_BIOS_CheckDiskHeader(X6502 *xp)
 
 	addr = ((uint16)RAM[0x01] << 8) | RAM[0x00];
 
-	status = _FDS_CheckDiskID(addr);
+	if (!automatic_disk_change && InDisk == 255)
+		status = FDS_STATUS_NO_DISK;
+	else 
+		status = _FDS_CheckDiskID(addr);
 
 	//SET_RETURN_ADDRESS(xp, ret_addr);
 	xp->PC = ret_addr;
@@ -1014,6 +1016,7 @@ int FDS_BIOS_CheckDiskHeader(X6502 *xp)
 	return 1;
 }
 
+/* XXX return error if no disk in manual mode */
 int FDS_BIOS_GetFileCount(X6502 *xp)
 {
 	uint8 file_count;
@@ -1032,6 +1035,7 @@ int FDS_BIOS_GetFileCount(X6502 *xp)
 	return 1;
 }
 
+/* XXX return error if no disk in manual mode */
 int FDS_BIOS_CheckFileType(X6502 *xp)
 {
 	uint8 file_type;
@@ -1053,6 +1057,7 @@ int FDS_BIOS_CheckFileType(X6502 *xp)
 	return 1;
 }
 
+/* XXX return error if no disk in manual mode */
 int FDS_BIOS_FileMatchTest(X6502 *xp)
 {
 	uint16 load_list_addr;
@@ -1108,7 +1113,9 @@ int FDS_BIOS_FileLoad(X6502 *xp)
 
 	ret_addr = GET_RETURN_ADDRESS(xp);
 
-	if (RAM[0x09] == 0) {
+	if (!automatic_disk_change && InDisk == 255) {
+		status = FDS_STATUS_NO_DISK;
+	} else if (RAM[0x09] == 0) {
 		current_file = real_file_count - RAM[0x06];
 		status = _FDS_LoadFile(current_file);
 	}

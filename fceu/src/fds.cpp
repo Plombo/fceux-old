@@ -152,10 +152,13 @@ static void FDSInit(void)
 
 	FDSSoundReset();
 	InDisk=0;
-	SelectDisk=0;
+	if (automatic_disk_change)
+		SelectDisk = TotalSides - 1;
+	else
+		SelectDisk=0;
 	if (emulate_fds_bios) {
 		FDS_BIOS_CloseDisk();
-		FDS_BIOS_OpenDisk(InDisk);
+		FDS_BIOS_OpenDisk(SelectDisk);
 	}
 }
 
@@ -177,7 +180,7 @@ void FCEU_FDSInsert(void)
 	} else {
 		InDisk = SelectDisk;
 		if (emulate_fds_bios)
-			FDS_BIOS_OpenDisk(InDisk);
+			FDS_BIOS_OpenDisk(SelectDisk);
 	}
 
 	FCEU_DispMessage("Disk %d Side %s %s", 0, SelectDisk>>1,(SelectDisk&1)?"B":"A",
@@ -277,7 +280,7 @@ static DECLFR(FDSRead4031)
 
 	if(InDisk!=255)
 	{
-		z=diskdata[InDisk][DiskPtr];
+		z=diskdata[SelectDisk][DiskPtr];
 		if(!fceuindbg)
 		{
 			if(DiskPtr<64999) DiskPtr++;
@@ -696,7 +699,7 @@ static DECLFW(FDSWrite)
 					else if(DiskPtr>=2)
 					{
 						DiskWritten=1;
-						diskdata[InDisk][DiskPtr-2]=V;
+						diskdata[SelectDisk][DiskPtr-2]=V;
 					}
 				}
 			}
@@ -998,7 +1001,10 @@ int FDSLoad(const char *name, FCEUFILE *fp)
 	GameInterface=FDSGI;
 	isFDS = true;
 
-	SelectDisk=0;
+	if (automatic_disk_change)
+		SelectDisk = TotalSides - 1;
+	else
+		SelectDisk=0;
 	InDisk=255;
 
 	ResetExState(PreSave,PostSave);
