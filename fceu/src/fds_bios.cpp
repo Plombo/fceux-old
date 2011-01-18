@@ -864,7 +864,7 @@ int FDS_BIOS_GetDiskInfo(X6502 *xp)
 		goto fallthrough;
 	}
 
-	if (InDisk == 255) {
+	if (InDisk == 255 && !automatic_disk_change) {
 		status = FDS_STATUS_NO_DISK;
 		goto done;
 	}
