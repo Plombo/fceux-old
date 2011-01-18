@@ -117,6 +117,11 @@ static void FDSStateRestore(int version)
 				diskdata[x][b] ^= diskdatao[x][b];
 		}
 
+	if (emulate_fds_bios) {
+		FDS_BIOS_CloseDisk();
+		FDS_BIOS_OpenDisk(SelectDisk);
+		disk_present_timestamp = 0;
+	}
 }
 
 void FDSSound();
@@ -304,7 +309,7 @@ static DECLFR(FDSRead4032)
 	//printf("Read4032: disk: %d timestamp: %llu timestamp: %llu\n", InDisk, disk_present_timestamp, timestampbase);
 
 	if (emulate_fds_bios && automatic_disk_change) {
-		if (timestampbase >= disk_present_timestamp + 3000000) {
+		if ((int64_t)timestampbase - (int64_t)(disk_present_timestamp + 3000000) >= 0) {
 			disk_present_timestamp = timestampbase;
 			if (InDisk == 255)
 				InDisk = SelectDisk;
