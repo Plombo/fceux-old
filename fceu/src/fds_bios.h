@@ -27,6 +27,11 @@
 #define FDS_STATUS_EOF				0x30
 #define FDS_STATUS_FILECOUNT_GREATER		0x31
 
+/* This is only used by the HLE code; the real ROM doesn't
+ * ever generate this (which is why it's two bytes instead
+ * of one). */
+#define FDS_STATUS_NMI_HACK			0x100
+
 #define FDS_DISKID_LENGTH			10
 #define FDS_DISKID_OFFSET			15
 #define FDS_MAX_FILES				256
@@ -59,6 +64,7 @@
 #define FDS_FILE_NAME_LENGTH			8
 #define FDS_FILE_OVERHEAD			261
 
+#define FDS_BIOS_NMI_HANDLER		0xE18B
 #define FDS_BIOS_LOAD_FILES		0xE1F8
 #define FDS_BIOS_APPEND_FILE		0xE237
 #define FDS_BIOS_WRITE_FILE		0xE239

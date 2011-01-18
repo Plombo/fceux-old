@@ -558,6 +558,9 @@ int _FDS_LoadFile(uint8 seq)
 		}
 		_FDS_CopyToCPU(address, &file_data_blocks[seq][1],
 	 	                 size);
+		if (address == NES_IO_PPUCTL1 && size >= 0) {
+			status = FDS_STATUS_NMI_HACK;
+		}
 	} else {
 		_FDS_CopyToPPU(address, &file_data_blocks[seq][1],
 	 	                 size);
@@ -647,7 +650,27 @@ int FDS_BIOS_LoadFiles(X6502 *xp, int initial_load)
 		}
 
 		files_found++;
-		_FDS_LoadFile(i);
+		status = _FDS_LoadFile(i);
+
+		/* Unlicensed games usually write 0x80 to 0x2000 to
+		   enable NMIs so they can take control of the boot
+		   process before the copyright check.  If this
+		   happens, we stop loading files and jump straight to
+		   the NMI handler to ensure the game will boot
+		   correctly.  Most images I've tested seem to boot
+		   without this hack, but there are a few that have
+		   graphical glitches or won't boot at all without
+		   this. */
+		if (status == FDS_STATUS_NMI_HACK) {
+			/* XXX should set up the stack properly, just in case */
+			xp->PC = FDS_BIOS_NMI_HANDLER;
+			if (automatic_disk_change) {
+				/* Ensure that we reopen the first disk */
+				FDS_BIOS_CloseDisk();
+				FDS_BIOS_OpenDisk(TotalSides - 1);
+			}
+			return 1;
+		}
 	}
 
 done:
