@@ -493,7 +493,7 @@ extern int test; test++;
    if(MapIRQHook) MapIRQHook(temp);
    FCEU_SoundCPUHook(temp);
 
-   if ((GameInfo->type == GIT_FDS) && emulate_fds_bios &&
+   if ((GameInfo->type == GIT_FDS) && /*emulate_fds_bios && */
        (_PC >= 0xE000 && _PC <= 0xFFFF)) {
 	   if (FCEU_FDSBiosHook(&X) > 0) {
 		   continue;

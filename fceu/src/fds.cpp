@@ -86,7 +86,7 @@ int emulate_fds_bios = 0;
 int TotalSides; //mbg merge 7/17/06 - unsignedectomy
 uint8 DiskWritten=0;    /* Set to 1 if disk was written to. */
 static uint8 writeskip;
-static uint32 DiskPtr;
+uint32 DiskPtr;
 static int32 DiskSeekIRQ;
 uint8 SelectDisk,InDisk;
 
@@ -116,12 +116,6 @@ static void FDSStateRestore(int version)
 			for(b=0; b<65500; b++)
 				diskdata[x][b] ^= diskdatao[x][b];
 		}
-
-	if (emulate_fds_bios) {
-		FDS_BIOS_CloseDisk();
-		FDS_BIOS_OpenDisk(SelectDisk);
-		disk_present_timestamp = 0;
-	}
 }
 
 void FDSSound();
@@ -157,24 +151,12 @@ static void FDSInit(void)
 
 	FDSSoundReset();
 	InDisk=0;
-	if (!emulate_fds_bios)
-		automatic_disk_change = 0;
 		
-	if (automatic_disk_change)
-		SelectDisk = TotalSides - 1;
-	else
-		SelectDisk=0;
-	if (emulate_fds_bios) {
-		FDS_BIOS_CloseDisk();
-		FDS_BIOS_OpenDisk(SelectDisk);
-	}
+	SelectDisk=0;
 }
 
 void FCEU_FDSInsert(void)
 {
-	if (automatic_disk_change)
-		return;
-
 	if(FCEUI_EmulationPaused()) EmulationPaused |= 2;
 
 	if(FCEUMOV_Mode(MOVIEMODE_RECORD))
@@ -183,15 +165,11 @@ void FCEU_FDSInsert(void)
 
 	if (InDisk != 255) {
 		InDisk = 255;
-		if (emulate_fds_bios)
-			FDS_BIOS_CloseDisk();
 	} else {
 		InDisk = SelectDisk;
-		if (emulate_fds_bios)
-			FDS_BIOS_OpenDisk(SelectDisk);
 	}
 
-	FCEU_DispMessage("Disk %d Side %s %s", 0, SelectDisk>>1,(SelectDisk&1)?"B":"A",
+	FCEU_DispMessage("Disk %d Side %s %s", 0, (SelectDisk>>1) + 1,(SelectDisk&1)?"B":"A",
 	                 (InDisk == 255) ? "Ejected" : "Inserted");
 }
 /*
@@ -213,17 +191,13 @@ void FCEU_FDSSelect(void)
 		return;
 	}
 
-	if (automatic_disk_change) {
-		return;
-	}
-
 	if(InDisk!=255)
 	{
 		FCEU_DispMessage("Eject disk before selecting.",0);
 		return;
 	}
 	SelectDisk=((SelectDisk+1)%TotalSides)&3;
-	FCEU_DispMessage("Disk %d Side %c Selected",0,SelectDisk>>1,(SelectDisk&1)?'B':'A');
+	FCEU_DispMessage("Disk %d Side %c Selected",0,(SelectDisk>>1) + 1,(SelectDisk&1)?'B':'A');
 }
 
 static void FDSFix(int a)
@@ -246,7 +220,7 @@ static void FDSFix(int a)
 			//   printf("IRQ: %d\n",scanline);
 		}
 	}
-	if (!emulate_fds_bios) {
+	if (0 && !emulate_fds_bios) {
 		if(DiskSeekIRQ>0)
 		{
 			DiskSeekIRQ-=a;
@@ -288,13 +262,14 @@ static DECLFR(FDSRead4031)
 
 	if(InDisk!=255)
 	{
-		z=diskdata[SelectDisk][DiskPtr];
-		if(!fceuindbg)
-		{
-			if(DiskPtr<64999) DiskPtr++;
-			DiskSeekIRQ=150;
-			X6502_IRQEnd(FCEU_IQEXT2);
-		}
+			z=diskdata[SelectDisk][DiskPtr];
+			//printf("Read byte %x at offset %x from %x\n", z, DiskPtr, X.PC);
+			if(!fceuindbg)
+			{
+				if(DiskPtr<64999) DiskPtr++;
+				//DiskSeekIRQ=150;
+				//X6502_IRQEnd(FCEU_IQEXT2);
+			}
 	}
 	return z;
 }
@@ -302,21 +277,9 @@ static DECLFR(FDSRead4032)
 {
 	uint8 ret;
 	//static int count = 64;
-	static int count = 1;
-	static int lastcount = 1;
 
 	ret=X.DB&~7;
 	//printf("Read4032: disk: %d timestamp: %llu timestamp: %llu\n", InDisk, disk_present_timestamp, timestampbase);
-
-	if (emulate_fds_bios && automatic_disk_change) {
-		if ((int64_t)timestampbase - (int64_t)(disk_present_timestamp + 3000000) >= 0) {
-			disk_present_timestamp = timestampbase;
-			if (InDisk == 255)
-				InDisk = SelectDisk;
-			else
-				InDisk = 255;
-		}
-	}
 
 	if(InDisk==255)
 		ret|=5;
@@ -714,6 +677,7 @@ static DECLFW(FDSWrite)
 		}
 		break;
 	case 0x4025:
+#if 0		
 		if (!emulate_fds_bios) {
 			X6502_IRQEnd(FCEU_IQEXT2);
 			if(InDisk!=255)
@@ -731,97 +695,103 @@ static DECLFW(FDSWrite)
 				if(V&2) {DiskPtr=0;DiskSeekIRQ=200;}
 				if(V&0x40) DiskSeekIRQ=200;
 			}
-		}
+		} else {
+#endif
+			if(InDisk!=255)
+			{
+				if(!(V&0x40))
+				{
+					if(FDSRegs[5]&0x40 && !(V&0x10))
+					{
+						DiskPtr-=2;
+					}
+					if(DiskPtr<0) DiskPtr=0;
+				}
+				if(!(V&0x4)) writeskip=2;
+				if(V&2) {DiskPtr=0;}
+			}
+//		}
 		setmirror(((V>>3)&1)^1);
 		break;
 	}
 	FDSRegs[A&7]=V;
 }
 
-void FDSBiosGetDiskInfo(X6502 *xp)
-{
-	printf("GetDiskInfo() called\n");
-}
-
-void FDSBiosLoadFiles(X6502 *xp)
-{
-	uint16 DiskID_addr;
-	uint16 LoadList_addr;
-
-	printf("LoadFiles() called\n");
-}
-
 int FCEU_FDSBiosHook(X6502 *xp)
 {
-	if (!emulate_fds_bios)
-		return 0;
-
 	int rc = 0;
 	switch(xp->PC) {
-#if 0
-		case 0xeeb8:
-			/* Skip check for self-test, initial
-			 * title screen and check for disk
-			 * (disk presence is assumed)
-			 */
-			xp->PC = 0xef46;
-			rc = 1;
-			break;
-		case 0xef65:
-			/* Pretend that the magic nag string test
-			 * always succeeds
-			 */
-			xp->P = Z_FLAG;
-			break;
-		case 0xefaf:
-			/* Skip display of nag screen */
-			xp->PC = 0xefcd;
-			rc = 1;
-			break;
-#endif
-		case FDS_BIOS_LOAD_FILES:
-			rc = FDS_BIOS_LoadFiles(xp, 0);
-			break;
-		case FDS_BIOS_APPEND_FILE:
-			rc = FDS_BIOS_AppendFile(xp);
-			break;
-		case FDS_BIOS_WRITE_FILE:
-			rc = FDS_BIOS_WriteFile(xp);
-			break;
-		case FDS_BIOS_GET_DISK_INFO:
-			rc = FDS_BIOS_GetDiskInfo(xp);
-			break;
-		case FDS_BIOS_ADJUST_FILE_COUNT:
-			rc = FDS_BIOS_AdjustFileCount(xp);
-			break;
-		case FDS_BIOS_CHECK_FILE_COUNT:
-			rc = FDS_BIOS_CheckFileCount(xp);
-			break;
-		case FDS_BIOS_SET_FILE_COUNT1:
-			rc = FDS_BIOS_SetFileCount1(xp);
-			break;
-		case FDS_BIOS_SET_FILE_COUNT2:
-			rc = FDS_BIOS_SetFileCount2(xp);
-			break;
-		case FDS_BIOS_CHECK_DISK_HEADER:
-			rc = FDS_BIOS_CheckDiskHeader(xp);
-			break;
-		case FDS_BIOS_GET_FILE_COUNT:
-			rc = FDS_BIOS_GetFileCount(xp);
-			break;
-		case FDS_BIOS_CHECK_FILE_TYPE:
-			rc = FDS_BIOS_CheckFileType(xp);
-			break;
-		case FDS_BIOS_FILE_MATCH_TEST:
-			rc = FDS_BIOS_FileMatchTest(xp);
-			break;
-		case FDS_BIOS_FILE_LOAD:
-			rc = FDS_BIOS_FileLoad(xp);
-			break;
-		default:
-			break;
-	}
+	case 0xe445:
+		FDS_BIOS_AutoDiskSelect(xp);
+		break;
+	case 0xe478:
+		/* There is a dummy read in the disk header check.  It's
+		   pretty small (30 bytes) but it's easy to get rid of
+		   so we may as well. */
+		DiskPtr += 30;
+		xp->PC = 0xe480;
+		rc = 1;
+		break;
+	case 0xe4a6:
+		/* This is inside of FileMatchTest. This hack skips
+		   the file name. This needs to be here in order
+		   for things to work. */
+		/* FIXME make sure we don't go past the end */
+		DiskPtr += 8;
+		xp->PC = 0xe4ac;
+		RAM[0x101] = 0;
+		rc = 1;
+		break;
+	case 0xe518:
+		/* This is inside of LoadData.  This skips
+		   over a file instead of doing dummy reading.
+		   This isn't necessary, but speeds things up
+		   a bit. */
+		if (RAM[0x09] != 0 || xp->A == 0) {
+			uint16 size;
+			uint16 dest_addr;
+			int skip = 0;
 
+			size = (RAM[0x0d] << 8 | RAM[0x0c]) + 1;
+			dest_addr = RAM[0x0b] << 8 | RAM[0x0a];
+
+			if (RAM[0x09] != 0) {
+				skip = 1;
+			} else if (xp->A == 0 && ((dest_addr < 0x200) ||
+			                          ((uint32)dest_addr + size > 0x10000))) {
+				skip = 1;
+			}
+
+			if (skip) {
+				/* FIXME make sure we don't go past the end */
+
+				DiskPtr += size;
+				RAM[0x0c] = RAM[0x0d] = 0xff;
+				xp->PC = 0xe572;
+				rc = 1;
+			} else if (xp->A == 0) {
+				/* Load PRG files via memcpy() if they don't touch
+				   I/O registers, otherwise fall back to the low-level
+				   BIOS routine.  In general, this means *every* PRG
+				   file will be loaded via memcpy(), except for the NMI
+				   hack file used by unlicensed games.  In that case we
+				   want to load the file byte-by-byte so that the NMI
+				   hack actually works. */
+
+				rc = FDS_BIOS_LoadPRG_RAM(xp);
+			}
+		} else if (xp->A != 0) {
+			/* CHR files can't be loaded via memcpy() without losing
+			   some compatibility: some unlicensed games depend on the
+			   PPU being in a certain state. Most games are fine with
+			   it though, so maybe it can be an option.  Enabling this
+			   can reduce load times by 0.2 - 0.5 seconds.  It doesn't
+			   seem like much, but it's noticeable. */
+					   
+			//rc = FDS_BIOS_LoadCHR_RAM(xp);
+		}
+		break;
+	}
 	return rc;
 }
 
@@ -952,7 +922,9 @@ int FDSLoad(const char *name, FCEUFILE *fp)
 		return 0;
 	}
 
-	if (emulate_fds_bios) {
+	if (1 || emulate_fds_bios) {
+		int i;
+#if 1
 		/* Skip check for self-test, title screen load, and
 		 * check for disk (disk presence is assumed)
 		 */
@@ -966,11 +938,29 @@ int FDSLoad(const char *name, FCEUFILE *fp)
 		FDSBIOS[0xf65] = 0x4c; /* JMP $EFAF */
 		FDSBIOS[0xf66] = 0xaf;
 		FDSBIOS[0xf67] = 0xef;
+#endif
 
+		//FDSBIOS[0x7a3] = 0xea;
+		FDSBIOS[0x7a5] = 0xc7;
+		FDSBIOS[0x7a6] = 0xe1;
+		FDSBIOS[0x1d4] = 0xea;
+		FDSBIOS[0x1d5] = 0xea;
+		FDSBIOS[0x1d6] = 0xea;
+
+#if 1
 		/* Skip display of copyright/nag screen */
 		FDSBIOS[0xfaf] = 0x4c; /* JMP $EFCD */
 		FDSBIOS[0xfb0] = 0xcd;
 		FDSBIOS[0xfb1] = 0xef;
+#endif
+		for (i = 0; i < 5; i++) {
+			FDSBIOS[0x68f + i] = 0xea;
+			FDSBIOS[0x6e6 + i] = 0xea;
+			FDSBIOS[0x6eb + i] = 0xea;
+			FDSBIOS[0x650 + i] = 0xea;
+			FDSBIOS[0x653 + i] = 0xea;
+			FDSBIOS[0x65b + i] = 0xea;
+		}
 	}
 
 	fclose(zp);
@@ -1009,11 +999,8 @@ int FDSLoad(const char *name, FCEUFILE *fp)
 	GameInterface=FDSGI;
 	isFDS = true;
 
-	if (automatic_disk_change)
-		SelectDisk = TotalSides - 1;
-	else
-		SelectDisk=0;
-	InDisk=255;
+	SelectDisk=0;
+	InDisk=SelectDisk;
 
 	ResetExState(PreSave,PostSave);
 	FDSSoundStateAdd();

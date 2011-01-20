@@ -97,5 +97,10 @@ int FDS_BIOS_GetFileCount(X6502 *xp);
 int FDS_BIOS_CheckFileType(X6502 *xp);
 int FDS_BIOS_FileMatchTest(X6502 *xp);
 int FDS_BIOS_FileLoad(X6502 *xp);
+int FDS_BIOS_TransferByte(X6502 *xp);
+int FDS_BIOS_EndOfBlkRead(X6502 *xp);
+int FDS_BIOS_LoadPRG_RAM(X6502 *xp);
+int FDS_BIOS_LoadCHR_RAM(X6502 *xp);
+int FDS_BIOS_AutoDiskSelect(X6502 *xp);
 
 #endif /* __FDS_BIOS_H__ */

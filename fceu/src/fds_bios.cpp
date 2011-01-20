@@ -48,109 +48,10 @@ extern uint8 InDisk,SelectDisk;
 extern uint8 FDSBIOS[8192];
 extern int TotalSides;
 extern int DiskWritten;
+extern uint32 DiskPtr;
 
 extern int emulate_fds_bios;
 extern int automatic_disk_change;
-extern int last_disk_counter;
-
-static int real_file_count;
-uint8 *volume_header_block;
-uint8 *file_count_block;
-uint8 *file_header_blocks[FDS_MAX_FILES];
-uint8 *file_data_blocks[FDS_MAX_FILES];
-
-/* Parse the disk data and set up our block pointers. This only checks the
- * the block types, it does not enforce them.  Warnings will be printed and
- * -1 will be returned if something doesn't look right.
- */
-/* XXX check size of disk data on every call to make sure we don't go past
- * the end, possibly into another disk image.
- */
-int FDS_BIOS_OpenDisk(uint8 diskno)
-{
-	uint8 *disk = diskdata[diskno];
-	uint8 *p = disk;
-	int status = 0;
-	int count = 0;
-	int i;
-
-	if (*p != FDS_BLOCK_TYPE_VOLUME_HEADER) {
-		fprintf(stderr, "Found block type 0x%x; should be type 1\n",
-			*p);
-		status = -1;
-	}
-
-	volume_header_block = p;
-
-	p += FDS_VOLUME_HEADER_BLOCK_SIZE;
-	if (*p != FDS_BLOCK_TYPE_FILE_COUNT) {
-		fprintf(stderr, "Found block type 0x%x; should be type 2\n",
-			*p);
-		status = -1;
-	}
-
-	file_count_block = p;
-	p += FDS_FILE_COUNT_BLOCK_SIZE;
-
-	/* Loop over file headers/data until we find a block
-	 * with a type other than 3 (file header) where a
-	 * header should be.
-	 */
-	while (*p == FDS_BLOCK_TYPE_FILE_HEADER) {
-		uint8 id = p[2];
-		uint8 seq = p[1];
-		uint16 size = p[13] | (p[14] << 8);
-
-		if (seq != count) {
-			printf("seq != count\n");
-			seq = count;
-		}
-
-		count++;
-		file_header_blocks[seq] = p;
-		p += FDS_FILE_HEADER_BLOCK_SIZE;
-
-		if (*p != FDS_BLOCK_TYPE_FILE_DATA) {
-			fprintf(stderr, "Found block type 0x%x; should be type 4\n",
-				*p);
-			status = -1;
-			break;
-		}
-
-		file_data_blocks[seq] = p;
-		p += size + 1;
-	}
-
-	real_file_count = count;
-
-	/* Warn if the file count block says there are more files than we found.
-	 * It is not an error for it to say there are fewer files.
-	 */
-	if (count < file_count_block[1]) {
-		fprintf(stderr, "File count is %d, but there are only %d\n",
-			file_count_block[1], count);
-	}
-
-	SelectDisk = diskno;
-	if (automatic_disk_change)
-		InDisk = 255;
-done:
-	return status;
-}
-
-void FDS_BIOS_CloseDisk(void)
-{
-	int i;
-
-	volume_header_block = NULL;
-	file_count_block = NULL;
-	real_file_count = 0;
-
-	for (i = 0; i < FDS_MAX_FILES; i++) {
-		file_header_blocks[i] = NULL;
-		file_data_blocks[i] = NULL;
-	}
-}
 
 /* Copy data to address in 6502-space.  Works like memcpy, except
  * it will only copy to actual RAM; it won't write to FDS ROM area
@@ -205,6 +106,8 @@ ssize_t _FDS_CopyToCPU(uint16 addr, uint8 *data, size_t size)
 		data += chunk_size;
 		rest -= chunk_size;
 	}
+
+	status = 0;
 
 done:
 	return status;
@@ -270,6 +173,15 @@ static int _FDS_CopyToPPU(uint16 addr, uint8 *data, size_t size)
 
 	status = FDS_STATUS_SUCCESS;
 
+#if 0
+	BWrite[0x2006](0x2006, (addr >> 8) & 0xff);
+	BWrite[0x2006](0x2006, addr & 0xff);
+	while (size > 0) {
+		BWrite[0x2007](0x2007, *data);
+		data++;
+		size--;
+	}
+#else
 	while (size > 0) {
 		addr &= PPU_RAM_MASK;
 
@@ -316,6 +228,7 @@ static int _FDS_CopyToPPU(uint16 addr, uint8 *data, size_t size)
 		data += chunk_size;
 		size -= chunk_size;
 	}
+#endif
 
 	return status;
 }
@@ -379,29 +292,6 @@ static int _FDS_CopyFromPPU(uint8 *data, uint16 addr, size_t size)
 	return status;
 }
 
-static int _FDS_CheckVolumeHeader(uint8 *data)
-{
-	int status = FDS_STATUS_SUCCESS;
-
-	if (data == NULL) {
-		status = FDS_STATUS_NO_DISK;
-		goto done;
-	}
-
-	if (*data != FDS_BLOCK_TYPE_VOLUME_HEADER) {
-		status = FDS_STATUS_INVALID_VOLUME_BLOCK;
-		goto done;
-	}
-
-	if (memcmp(data + 1, FDS_MAGIC, FDS_MAGIC_LENGTH)) {
-		status = FDS_STATUS_INVALID_MAGIC;
-		goto done;
-	}
-done:
-	return status;
-}
-
-
 /* This checks the specified disk's ID block with the one passed in
  * the ID parameter.  For two the id to match, each byte must be equal
  * to the corresponding byte in the on-disk ID OR be equal to 0xff.  If
@@ -420,11 +310,7 @@ static int _FDS_Disk_CheckDiskID(uint8 disk, uint8 *id)
 		goto fail;
 	}
 
-	status = _FDS_CheckVolumeHeader(diskdata[disk]);
-	if (status != FDS_STATUS_SUCCESS) {
-		goto fail;
-	}
-
+	/* FIXME does this really need to be checked here? */
 	if (diskdata[disk][FDS_VOLUME_HEADER_BLOCK_SIZE] !=
 	    FDS_BLOCK_TYPE_FILE_COUNT) {
 		status = FDS_STATUS_INVALID_FILE_COUNT_BLOCK;
@@ -450,783 +336,141 @@ static int _FDS_Disk_CheckDiskID(uint8 disk, uint8 *id)
 
 	if (i < FDS_DISKID_LENGTH) {
 		status = error;
+	} else {
+		status = FDS_STATUS_SUCCESS;
 	}
 fail:
 	return status;
 }
 
-/* Check to see if the ID block stored at addr in RAM matches the one
- * for the current disk.
- */
-static int _FDS_CheckDiskID(uint16 addr)
+int FDS_BIOS_EndOfBlkRead(X6502 *xp)
+{
+	uint16 ret_addr;
+
+	ret_addr = GET_RETURN_ADDRESS(xp);
+
+	xp->PC = ret_addr;
+
+	xp->S += 2;
+
+	return 1;
+}
+
+int FDS_BIOS_TransferByte(X6502 *xp)
+{
+	uint16 ret_addr;
+	uint8 value;
+
+	ret_addr = GET_RETURN_ADDRESS(xp);
+
+	xp->X = diskdata[SelectDisk][DiskPtr];
+	value = xp->A;
+	xp->A = xp->X;
+	xp->P &= ~I_FLAG;
+
+//	printf("read byte %hx from offset %d\n", xp->X, DiskPtr);
+
+	if (DiskPtr < 64999)
+		DiskPtr++;
+
+	xp->PC = ret_addr;
+	xp->S += 2;
+	
+	return 1;
+}
+
+int FDS_BIOS_LoadPRG_RAM(X6502 *xp)
+{
+	uint16 size;
+	uint16 dest_addr;
+	int status;
+
+	size = (RAM[0x0d] << 8 | RAM[0x0c]) + 1;
+	dest_addr = RAM[0x0b] << 8 | RAM[0x0a];
+
+	if (dest_addr >= NES_IO_PPUCTL1 && dest_addr < FDS_RAM_ADDRESS)
+		return 0;
+	else if (dest_addr < NES_IO_PPUCTL1 && (dest_addr + size) >=
+		 NES_IO_PPUCTL1)
+		return 0;
+
+	status = _FDS_CopyToCPU(dest_addr,
+			      (uint8 *)&diskdata[SelectDisk][DiskPtr],
+			      size);
+
+	if (status >= 0) {
+		DiskPtr += size;
+		dest_addr += size;
+		RAM[0x0c] = RAM[0x0d] = 0xff;
+		RAM[0x0b] = (dest_addr >> 8) & 0xff;
+		RAM[0x0a] = (dest_addr & 0x0f);
+		xp->PC = 0xe572;
+		return 1;
+	}
+
+	return 0;
+}
+
+
+int FDS_BIOS_LoadCHR_RAM(X6502 *xp)
+{
+	uint16 size;
+	uint16 dest_addr;
+	int status;
+
+	size = (RAM[0x0d] << 8 | RAM[0x0c]) + 1;
+	dest_addr = RAM[0x0b] << 8 | RAM[0x0a];
+
+	status = _FDS_CopyToPPU(dest_addr,
+			      (uint8 *)&diskdata[SelectDisk][DiskPtr],
+			      size);
+
+	if (status == FDS_STATUS_SUCCESS) {
+		DiskPtr += size;
+		dest_addr += size;
+		RAM[0x0c] = RAM[0x0d] = 0xff;
+		RAM[0x0b] = (dest_addr >> 8) & 0xff;
+		RAM[0x0a] = (dest_addr & 0x0f);
+		xp->PC = 0xe572;
+		return 1;
+	}
+
+	return 0;
+}
+
+
+int FDS_BIOS_AutoDiskSelect(X6502 *xp)
 {
 	uint8 id[FDS_DISKID_LENGTH];
-	int status = FDS_STATUS_NO_DISK;
 	uint8 disk;
+	uint16 addr;
+	int matches;
 	int i;
+
+	addr = RAM[0x01] << 8 | RAM[0x00];
 
 	/* Pull the requested ID from memory */
 	for (i = 0; i < FDS_DISKID_LENGTH; i++) {
 		id[i] = ARead[addr + i](addr + i);
 	}
 
-	if (!automatic_disk_change) {
-		if (InDisk != 255)
-			return _FDS_Disk_CheckDiskID(SelectDisk, id);
-		else
-			return FDS_STATUS_NO_DISK;
-	}
-
-	for (disk = SelectDisk + 1; disk != SelectDisk; disk++) {
-		if (disk == TotalSides)
-			disk = 0;
-		if (_FDS_Disk_CheckDiskID(disk, id) == FDS_STATUS_SUCCESS)
-			break;
-	}
-
-	if (disk < TotalSides) {
-		printf("Selecting disk %d side %c\n", (disk / 2) + 1,
-			disk % 2 ? 'B' : 'A');
-		status = FDS_STATUS_SUCCESS;
-		if (disk != SelectDisk) {
-			FDS_BIOS_CloseDisk();
-			FDS_BIOS_OpenDisk(disk);
+	matches = 0;
+	for (i = 0; i < TotalSides; i++) {
+		if (_FDS_Disk_CheckDiskID(i, id) == FDS_STATUS_SUCCESS) {
+			disk = i;
+			matches++;
 		}
 	}
 
-	return status;
-}
+	if (matches > 1 || matches == 0)
+		return 0;
 
-/* Get the number of files the current disk *thinks* it has.
- * Note that there may be more files than this.
- */
-static int _FDS_GetFileCount(X6502 *xp, uint8 *count)
-{
-	int status = FDS_STATUS_SUCCESS;
-	int handled = 1;
-	uint16 disk_id_addr;
-	uint16 ret_addr;
-
-	ret_addr = GET_RETURN_ADDRESS(xp);
-	disk_id_addr = GET_ADDRESS(ret_addr);
-	ret_addr += 2;
-
-	if (emulate_fds_bios) {
-		status = _FDS_CheckDiskID(disk_id_addr);
-		if (status != FDS_STATUS_SUCCESS) {
-			goto done;
-		}
+	if (disk != SelectDisk) {
+		SelectDisk = disk;
+		InDisk = SelectDisk;
+		FCEU_DispMessage("Disk %d Side %c Auto-Selected", 0, (SelectDisk>>1) + 1,
+		                 (SelectDisk&1)?'B':'A');
 	}
-
-	if (!emulate_fds_bios) {
-		handled = 0;
-		goto fallthrough;
-	}
-
-	*count = file_count_block[1];
-done:
-
-	SET_RETURN_ADDRESS(xp, ret_addr);
-	SET_ACCUMULATOR(xp, status);
-	xp->PC = ret_addr;
-	xp->S += 2;
-
-fallthrough:
-
-	return handled;
-}
-
-/* Load the file with sequence number 'seq' from the current disk */
-int _FDS_LoadFile(uint8 seq)
-{
-	uint8 type;
-	uint16 address;
-	uint16 size;
-	int status = FDS_STATUS_SUCCESS;
-
-	type = file_header_blocks[seq][15];
-	address = file_header_blocks[seq][11] |
-	          (file_header_blocks[seq][12] << 8);
-	size = file_header_blocks[seq][13] |
-	       (file_header_blocks[seq][14] << 8);
-
-	if (type == 0) { /* PRG data */
-		if ((address < NES_IO_PPUCTL1 &&
-		    ((address & NES_RAM_MASK) < FDS_BIOS_DATA_SIZE)) ||
-		    ((int)address + size > NES_RAM_TOP)) {
-		   goto done;
-		}
-		_FDS_CopyToCPU(address, &file_data_blocks[seq][1],
-	 	                 size);
-		if (address == NES_IO_PPUCTL1 && size >= 0) {
-			status = FDS_STATUS_NMI_HACK;
-		}
-	} else {
-		_FDS_CopyToPPU(address, &file_data_blocks[seq][1],
-	 	                 size);
-	}
-done:
-	return status;
-}
-
-/* Load all files from the current disk that have ID numbers <=
- * the disk's boot id if initial_load is set, otherwise pull the
- * address of the list of files to load from the stack.  Up to
- * FDS_LOAD_LIST_MAX files may be loaded at a time this way.
- */
-int FDS_BIOS_LoadFiles(X6502 *xp, int initial_load)
-{
-	uint16 disk_id_addr;
-	uint16 load_list_addr;
-	uint16 ret_addr;
-	uint8 file_count;
-	uint8 boot_id;
-	uint8 files_found;
-	uint8 load_list[FDS_LOAD_LIST_MAX];
-	int status = FDS_STATUS_SUCCESS;
-	int i, j;
-	int handled = 1;
-
-	if (!emulate_fds_bios) {
-		handled = 0;
-		goto fallthrough;
-	}
-
-	if (!initial_load) {
-		ret_addr = GET_RETURN_ADDRESS(xp);
-		disk_id_addr = GET_ADDRESS(ret_addr);
-		load_list_addr = GET_ADDRESS(ret_addr + 2);
-		ret_addr += 4;
-
-		status = _FDS_CheckDiskID(disk_id_addr);
-		if (status != FDS_STATUS_SUCCESS) {
-			goto fail;
-		}
-
-		for(i = 0; i < FDS_LOAD_LIST_MAX; i++) {
-			load_list[i] = ARead[load_list_addr + i](load_list_addr + i);
-			if (load_list[i] == 0xff) {
-				break;
-			}
-		}
-	} else {
-		load_list[0] = 0xff;
-	}
-
-	boot_id = volume_header_block[FDS_BOOTID_INDEX];
-	file_count = file_count_block[1];
-
-	files_found = 0;
-	for (i = 0; i < file_count; i++) {
-		uint8 file_id = file_header_blocks[i][2];
-
-		if (file_header_blocks[i][0] != FDS_BLOCK_TYPE_FILE_HEADER) {
-			status = FDS_STATUS_INVALID_HEADER_BLOCK;
-			goto done;
-		}
-
-		if (file_data_blocks[i][0] != FDS_BLOCK_TYPE_FILE_DATA) {
-			status = FDS_STATUS_INVALID_DATA_BLOCK;
-			goto done;
-		}
-
-		if (load_list[0] == 0xff) {
-			if (file_id > boot_id) {
-				continue;
-			}
-		} else {
-			for (j = 0; j < FDS_LOAD_LIST_MAX; j++) {
-				if (load_list[j] == 0xff) {
-					j = FDS_LOAD_LIST_MAX;
-					break;
-				} else if (load_list[j] == file_id) {
-					break;
-				}
-			}
-
-			if (j == FDS_LOAD_LIST_MAX) {
-				continue;
-			}
-		}
-
-		files_found++;
-		status = _FDS_LoadFile(i);
-
-		/* Unlicensed games usually write 0x80 to 0x2000 to
-		   enable NMIs so they can take control of the boot
-		   process before the copyright check.  If this
-		   happens, we stop loading files and jump straight to
-		   the NMI handler to ensure the game will boot
-		   correctly.  Most images I've tested seem to boot
-		   without this hack, but there are a few that have
-		   graphical glitches or won't boot at all without
-		   this. */
-		if (status == FDS_STATUS_NMI_HACK) {
-			/* XXX should set up the stack properly, just in case */
-			xp->PC = FDS_BIOS_NMI_HANDLER;
-			if (automatic_disk_change) {
-				/* Ensure that we reopen the first disk */
-				FDS_BIOS_CloseDisk();
-				FDS_BIOS_OpenDisk(TotalSides - 1);
-			}
-			return 1;
-		}
-	}
-
-done:
-	if (!initial_load)
-		xp->Y = files_found;
-
-	if (automatic_disk_change)
-		InDisk = 255;
-fail:
-	if (!initial_load) {
-		SET_RETURN_ADDRESS(xp, ret_addr);
-		xp->S += 2;
-		xp->PC = ret_addr;
-		SET_ACCUMULATOR(xp, status);
-	}
-
-fallthrough:
-	return handled;
-}
-
-int _FDS_SaveFile(uint8 seq, uint16 addr)
-{
-	uint8 *disk_offset;
-	uint16 space_remaining, file_size;
-	uint16 data_address;
-	uint8 file_header[17];
-	int status = FDS_STATUS_SUCCESS;
-	int i;
-
-	if (seq > 0) {
-		uint16 prev_size;
-		prev_size = file_header_blocks[seq - 1][13] |
-		            (file_header_blocks[seq - 1][14] << 8);
-		disk_offset = file_data_blocks[seq - 1] + 1 + prev_size;
-	} else {
-		disk_offset = file_count_block + FDS_FILE_COUNT_BLOCK_SIZE;
-	}
-
-	space_remaining = 65500 - (disk_offset - volume_header_block);
-
-	/* Read in the file header data */
-	for (i = 0; i < sizeof(file_header); i++) {
-		file_header[i] = ARead[addr +i](addr +i);
-	}
-
-	file_size = file_header[11] | (file_header[12] << 8);
-
-	if (file_size + 1 + FDS_FILE_HEADER_BLOCK_SIZE > space_remaining) {
-		/* FIXME do we do a partial write? what error do we return? */
-		fprintf(stderr, "FIXME: file too big: %u\n", file_size);
-		status = FDS_STATUS_EOF;
-		goto done;
-	}
-
-	data_address = file_header[14] | (file_header[15] << 8);
-
-	/* Write the file header */
-	disk_offset[0] = FDS_BLOCK_TYPE_FILE_HEADER;
-	disk_offset[1] = seq;
-	for (i = 0; i < FDS_FILE_HEADER_BLOCK_SIZE - 1; i++) {
-		disk_offset[i + 2] = file_header[i];
-	}
-	file_header_blocks[seq] = disk_offset;
-	disk_offset[FDS_FILE_HEADER_BLOCK_SIZE] =  FDS_BLOCK_TYPE_FILE_DATA;
-	disk_offset += FDS_FILE_HEADER_BLOCK_SIZE;
-
-	/* Write out the file data */
-	/* FIXME should check results of copy*/
-	if (file_header[16] == 0) {
-		/* Data is located in CPU address space */
-		_FDS_CopyFromCPU(disk_offset + 1, data_address,
-		                          file_size);
-	} else {
-		_FDS_CopyFromPPU(disk_offset + 1, data_address,
-		                          file_size);
-	}
-
-	file_data_blocks[seq] = disk_offset;
-	DiskWritten = 1;
-
-done:
-	return status;
-}
-
-int _FDS_WriteFile(X6502 *xp, uint8 seq)
-{
-	uint16 disk_id_addr;
-	uint16 file_header_addr;
-	uint16 ret_addr;
-	uint8 file_count;
-	int i;
-	int status;
-	int handled = 1;
-
-	ret_addr = GET_RETURN_ADDRESS(xp);
-	disk_id_addr = GET_ADDRESS(ret_addr);
-	file_header_addr = GET_ADDRESS(ret_addr + 2);
-	ret_addr += 4;
-
-	if (emulate_fds_bios) {
-		status = _FDS_CheckDiskID(disk_id_addr);
-	}
-
-	if (!emulate_fds_bios) {
-		handled = 0;
-		goto fallthrough;
-	}
-
-	if (status != FDS_STATUS_SUCCESS) {
-		goto done;
-	}
-
-	/* XXX real file count? */
-	file_count = file_count_block[1];
-	if (seq == 0xff) {
-		seq = file_count;
-	}
-
-	for (i = 0; i < seq; i++) {
-		if (file_header_blocks[i][0] != FDS_BLOCK_TYPE_FILE_HEADER) {
-			status = FDS_STATUS_INVALID_HEADER_BLOCK;
-			goto done;
-		}
-
-		if (file_data_blocks[i][0] != FDS_BLOCK_TYPE_FILE_DATA) {
-			status = FDS_STATUS_INVALID_DATA_BLOCK;
-			goto done;
-		}
-	}
-
-	status = _FDS_SaveFile(seq, file_header_addr);
-	if (status != FDS_STATUS_SUCCESS) {
-		/* XXX real file count? */
-		file_count_block[1] = seq;
-		goto done;
-	}
-
-	/* XXX real file count? */
-	file_count_block[1] = seq + 1;
-
-	FDS_BIOS_CloseDisk();
-	FDS_BIOS_OpenDisk(SelectDisk);
-
-done:
-	SET_RETURN_ADDRESS(xp, ret_addr);
-	xp->PC = ret_addr;
-	xp->S += 2;
-	SET_ACCUMULATOR(xp, status);
-
-fallthrough:
-
-	return handled;
-}
-
-int FDS_BIOS_AppendFile(X6502 *xp)
-{
-	return _FDS_WriteFile(xp, 0xff);
-}
-
-int FDS_BIOS_WriteFile(X6502 *xp)
-{
-	return _FDS_WriteFile(xp, xp->A);
-}
-
-int FDS_BIOS_GetDiskInfo(X6502 *xp)
-{
-	uint16 ret_addr;
-	uint16 disk_info_addr;
-	uint8 *disk_info, *p;
-	int disk_info_length;
-	int disk_info_written;
-	int status = FDS_STATUS_SUCCESS;
-	int file_count;
-	int disk_size;
-	int i;
-	int handled = 1;
-
-	ret_addr = GET_RETURN_ADDRESS(xp);
-	disk_info_addr = GET_ADDRESS(ret_addr);
-	ret_addr += 2;
-	disk_info = NULL;
-
-	/* If we get this when we've ejected the disk and we're reporting
-	 * that a disk is there anyway (for the auto change/select features),
-	 * use the last selected disk since there's a good chance it's right
-	 * and we have no other way of knowing which disk the game wants.
-	 */
-
-	if (!emulate_fds_bios) {
-		handled = 0;
-		goto fallthrough;
-	}
-
-	if (InDisk == 255 && !automatic_disk_change) {
-		status = FDS_STATUS_NO_DISK;
-		goto done;
-	}
-
-
-	disk_info_written = 0;
-
-	_FDS_CopyToCPU(disk_info_addr, volume_header_block + FDS_DISKID_OFFSET,
-	               FDS_DISKID_LENGTH);
-
-	disk_info_addr += FDS_DISKID_LENGTH;
-
-	/* XXX real file count? */
-	file_count = file_count_block[1];
-	BWrite[disk_info_addr](disk_info_addr, file_count);
-	disk_info_addr++;
-
-	disk_info_length = (FDS_FILE_NAME_LENGTH + 1) * (file_count) + 2;
-	disk_info = (uint8 *)FCEU_malloc(disk_info_length);
-	if (disk_info == NULL) {
-		/* FIXME */
-		fprintf(stderr, "Failed to allocate memory for disk info\n");
-		exit(-1);
-	}
-
-	disk_size = 0;
-	p = disk_info;
-	for (i = 0; i < file_count; i++) {
-		int size;
-		int id = file_header_blocks[i][2];
-		if (id < 0 || file_header_blocks[id] == NULL) {
-			continue;
-		}
-
-		if (file_header_blocks[id][0] != FDS_BLOCK_TYPE_FILE_HEADER) {
-			status = FDS_STATUS_INVALID_HEADER_BLOCK;
-			goto done;
-		}
-
-		*p++ = id;
-		memcpy(p, &file_header_blocks[id][3], FDS_FILE_NAME_LENGTH);
-		p += FDS_FILE_NAME_LENGTH;
-		disk_info_written += FDS_FILE_NAME_LENGTH + 1;
-
-		size = file_header_blocks[id][12];
-		size |= file_header_blocks[id][13] << 8;
-
-		disk_size += size;
-	}
-
-	disk_size += FDS_FILE_OVERHEAD * file_count;
-	*p++ = (disk_size >> 8) & 0xff;
-	*p++ = disk_size & 0xff;
-
-	disk_info_written += 2;
-
-done:
-	if (disk_info) {
-		/* FIXME check return value of this */
-		_FDS_CopyToCPU(disk_info_addr, disk_info, disk_info_written);
-
-		free(disk_info);
-	}
-
-	SET_RETURN_ADDRESS(xp, ret_addr);
-	xp->PC = ret_addr;
-	xp->S += 2;
-
-	SET_ACCUMULATOR(xp, status);
-
-fallthrough:
-	return handled;
-}
-
-int FDS_BIOS_AdjustFileCount(X6502 *xp)
-{
-	uint8 old_count, new_count;
-	int handled;
-
-	new_count = xp->A;
-	handled = _FDS_GetFileCount(xp, &old_count);
-
-	if (!handled) {
-		goto fallthrough;
-	}
-
-	if (xp->A == FDS_STATUS_SUCCESS) {
-		if (new_count < old_count) {
-			xp->A = FDS_STATUS_FILECOUNT_GREATER;
-		}
-
-		file_count_block[1] = old_count - new_count;
-	}
-
-	FDS_BIOS_CloseDisk();
-	FDS_BIOS_OpenDisk(SelectDisk);
-
-fallthrough:
-	return handled;
-}
-
-int FDS_BIOS_CheckFileCount(X6502 *xp)
-{
-	uint8 old_count, new_count;
-	int handled;
-
-	new_count = xp->A;
-	handled = _FDS_GetFileCount(xp, &old_count);
-
-	if (!handled) {
-		goto fallthrough;
-	}
-
-	if (xp->A == FDS_STATUS_SUCCESS) {
-		if (new_count < old_count) {
-			xp->A = FDS_STATUS_FILECOUNT_GREATER;
-		}
-
-		file_count_block[1] = new_count;
-	}
-
-	FDS_BIOS_CloseDisk();
-	FDS_BIOS_OpenDisk(SelectDisk);
-
-fallthrough:
-	return handled;
-}
-
-int FDS_BIOS_SetFileCount1(X6502 *xp)
-{
-	uint8 old_count, new_count;
-	int handled;
-
-	new_count = xp->A;
-	handled = _FDS_GetFileCount(xp, &old_count);
-
-	if (!handled) {
-		goto fallthrough;
-	}
-
-	if (xp->A == FDS_STATUS_SUCCESS) {
-		file_count_block[1] = new_count;
-	}
-
-	FDS_BIOS_CloseDisk();
-	FDS_BIOS_OpenDisk(SelectDisk);
-
-fallthrough:
-	return handled;
-}
-
-int FDS_BIOS_SetFileCount2(X6502 *xp)
-{
-	uint8 old_count, new_count;
-	int handled;
-
-	new_count = xp->A;
-	handled = _FDS_GetFileCount(xp, &old_count);
-
-	if (!handled) {
-		goto fallthrough;
-	}
-
-	if (xp->A == FDS_STATUS_SUCCESS) {
-		file_count_block[1] = new_count + 1;
-	}
-
-	FDS_BIOS_CloseDisk();
-	FDS_BIOS_OpenDisk(SelectDisk);
-
-fallthrough:
-	return handled;
-}
-
-/* Mid-level disk read routine to check the disk ID against one
- * supplied by the game.  This assumes the address for the ID is
- * stored in $00.  This is only necessary because a few games
- * essentially re-implement the Load Files routine, adding some
- * anti-piracy sanity checks.  Doki Doki Panic and Deep Dungeon II
- * are two examples of this.
- */
-int FDS_BIOS_CheckDiskHeader(X6502 *xp)
-{
-	uint8 status;
-	uint16 addr;
-	uint16 ret_addr;
-
-	ret_addr = GET_RETURN_ADDRESS(xp);
-
-	addr = ((uint16)RAM[0x01] << 8) | RAM[0x00];
-
-	if (!automatic_disk_change && InDisk == 255)
-		status = FDS_STATUS_NO_DISK;
-	else 
-		status = _FDS_CheckDiskID(addr);
-
-	//SET_RETURN_ADDRESS(xp, ret_addr);
-	xp->PC = ret_addr;
-	xp->S += 2;
-
-	SET_ACCUMULATOR(xp, status);
-
-	return 1;
-}
-
-/* Mid-level disk read routine for getting the current disk's file
- * count.  The result is stored in $06.
- */
-int FDS_BIOS_GetFileCount(X6502 *xp)
-{
-	uint8 file_count;
-	uint16 ret_addr;
-
-	ret_addr = GET_RETURN_ADDRESS(xp);
-	file_count = file_count_block[1];
-
-	RAM[0x06] = file_count;
-	//SET_RETURN_ADDRESS(xp, ret_addr);
-	xp->PC = ret_addr;
-	xp->S += 2;
-
-	SET_ACCUMULATOR(xp, file_count);
-
-	return 1;
-}
-
-/* XXX return error if no disk in manual mode */
-/* Mid-level read routine; in the actual ROM, makes sure that the
- * current block under the disk head matches the type passed in the
- * accumulator.  In high-level mode this is useless, but we need to
- * implement it for some games.  This will always succeed, storing the
- * passed-in type in $07 and storing 0 in the accumulator.
- */
-int FDS_BIOS_CheckFileType(X6502 *xp)
-{
-	uint8 file_type;
-	uint16 ret_addr;
-
-	ret_addr = GET_RETURN_ADDRESS(xp);
-	file_type = xp->A;
-
-	RAM[0x07] = file_type;
-
-	xp->PC = ret_addr;
-	xp->S += 2;
-
-	//xp->X = file_type + 0x21;
-	//xp->Y = xp->X;
-
-	SET_ACCUMULATOR(xp, 0);
-
-	return 1;
-}
-
-/* XXX return error if no disk in manual mode */
-/* In the real ROM, this routine is what determines whether or not the
- * file starting to pass under the disk head is to be loaded.  It is
- * called once for every file on the disk.
- *
- * The load list is passed in $02.  If the load list only contains
- * 0xff and the file_id is <= the boot id, the file will be loaded.
- * Otherwise, if the list contains the file's ID, it will be loaded.
- *
- * If a file should be loaded, $09 is set to 0 and $0e is incremented.
- * Otherwise, $09 is set to 0xff.
- *
- * The first time this is called, $06 *must* hold the actual number of
- * files on the disk.  This is not a requirement for the low-level
- * version of this routine, but we need to have access to this value
- * value in the emulator state somewhere.  Explanation follows:
- *
- * Since in high-level mode we don't have a disk head travelling over
- * the disk, we need some other way of knowing which file we're
- * "over".  For the games I've tested that use this call, they call
- * FDS_BIOS_GetFileCount first, which leaves the disk's notion of
- * count in $06.  For these games at least, this location is
- * decremented each time through the file loading loop, so we can
- * simply subtract the value stored there from real_file_count to get
- * the index into our list of files.  Note that there's nothing
- * stopping the game from copying this value elsewhere and using that
- * new location instead.  If such a game exists some other way of
- * getting the current file index will need to be devised.
- *
- * Note: it is possible for the game to have more files on the disk
- * than noted by the file count block.  Deep Dungeon II uses this for
- * a copy-protection scheme.  It increments $06 after calling
- * FDS_BIOS_GetFileCount() to account for the extra file at the end,
- * so by the time this routine is called for the first time $06 has
- * the correct file count. It can therefore still be used for
- * determining the current file index.
- */
-int FDS_BIOS_FileMatchTest(X6502 *xp)
-{
-	uint16 load_list_addr;
-	uint16 ret_addr;
-	uint8 boot_id;
-	uint8 file_id, current_id; 
-	uint8 current_file;
-	int i;
-	int load_file;
-
-	current_file = real_file_count - RAM[0x06];
-	ret_addr = GET_RETURN_ADDRESS(xp);
-	load_list_addr = ((uint16)RAM[0x03] << 8) | RAM[0x02];
-	boot_id = volume_header_block[FDS_BOOTID_INDEX];
-
-	current_id = file_header_blocks[current_file][2];
-	load_file = 0;
-	for(i = 0; i < FDS_LOAD_LIST_MAX; i++) {
-		file_id = ARead[load_list_addr + i](load_list_addr + i);
-		if (file_id == 0xff && i == 0 && current_id <= boot_id) {
-			load_file = 1;
-			break;
-		} else if (file_id == current_id) {
-			load_file = 1;
-			break;
-		} else if (file_id == 0xff) {
-			break;
-		}
-	}
-
-	if (load_file) {
-		RAM[0x09] = 0;
-		RAM[0x0e]++;
-	} else {
-		RAM[0x09] = 0xff;
-	}
-
-	xp->PC = ret_addr;
-	xp->S += 2;
-
-	SET_ACCUMULATOR(xp, 0);
-
-	return 1;
-}
-
-/* Mid-level disk read routine; loads the current file into memory if
- * $09 == 0, otherwise skips it.  status is returned in the accumulator,
- * and current file depends on the value stored in $06.  See the comment
- * for FileMatchTest for the reasoning.
- */
-int FDS_BIOS_FileLoad(X6502 *xp)
-{
-	uint16 ret_addr;
-	int i;
-	int load_file;
-	int status = FDS_STATUS_SUCCESS;
-	uint8 current_file;
-
-	ret_addr = GET_RETURN_ADDRESS(xp);
-
-	if (!automatic_disk_change && InDisk == 255) {
-		status = FDS_STATUS_NO_DISK;
-	} else if (RAM[0x09] == 0) {
-		current_file = real_file_count - RAM[0x06];
-		status = _FDS_LoadFile(current_file);
-	}
-
-	xp->PC = ret_addr;
-	xp->S += 2;
-
-	SET_ACCUMULATOR(xp, status);
 
 	return 1;
 }
