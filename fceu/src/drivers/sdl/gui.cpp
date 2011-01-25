@@ -1760,6 +1760,9 @@ int InitGTKSubsystem(int argc, char** argv)
 	// set up keypress "snooper" to convert GDK keypress events into SDL keypresses
 	gtk_key_snooper_install(convertKeypress, NULL);
 	
+	// set up keypress "snooper" to convert GDK keypress events into SDL keypresses
+	gtk_key_snooper_install(convertKeypress, NULL);
+	
 	g_signal_connect(MainWindow, "destroy-event", quit, NULL);
 	
 	// signal handlers
