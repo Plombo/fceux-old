@@ -33,6 +33,7 @@ void loadGame ();
 extern Config *g_config;
 
 GtkWidget* MainWindow = NULL;
+GtkWidget* socket = NULL;
 GtkWidget* padNoCombo;
 
 // This function configures a single button on a gamepad
@@ -1277,7 +1278,12 @@ void loadGame ()
 		gtk_widget_destroy (fileChooser);
 }
 
-void closeGame() { CloseGame(); }
+void closeGame()
+{
+	GdkColor bg = {0, 0, 0, 0};
+	gtk_widget_modify_bg(socket, GTK_STATE_NORMAL, &bg);
+	CloseGame();
+}
 
 // this is not used currently; it is used in rendering sdl in
 // the gtk window which is broken
@@ -1469,7 +1475,7 @@ int InitGTKSubsystem(int argc, char** argv)
 	gtk_window_set_title(GTK_WINDOW(MainWindow), FCEU_NAME_AND_VERSION);
 	gtk_window_set_default_size(GTK_WINDOW(MainWindow), 359, 200);
 	
-	vbox = gtk_vbox_new(FALSE, 3);
+	vbox = gtk_vbox_new(FALSE, 0);
 	gtk_container_add(GTK_CONTAINER(MainWindow), vbox);
 	
 	Menubar = CreateMenubar(MainWindow);
@@ -1508,31 +1514,27 @@ int InitGTKSubsystem(int argc, char** argv)
 	// so i'm commenting it out and haivng a seperate GTK2 window with 
 	// controls
 	// 12/21/09
-	/*
-	GtkWidget* socket = gtk_socket_new();
-	gtk_widget_show (socket) ; 
-	gtk_container_add (GTK_CONTAINER(MainWindow), socket);
+	// ---
+	// uncommented and fixed by Bryan Cain
+	// 1/24/11
+	GtkWidget* hbox = gtk_hbox_new(FALSE, 0);
+	gtk_widget_show(hbox);
+	gtk_box_pack_end (GTK_BOX(vbox), hbox, TRUE, TRUE, 0);
 	
-	gtk_widget_realize (socket);
-
-	char SDL_windowhack[24];
-	sprintf(SDL_windowhack, "SDL_WINDOWID=%ld", (long int)gtk_socket_get_id (GTK_SOCKET(socket)));
-	putenv(SDL_windowhack); 
+	socket = gtk_event_box_new();
+	gtk_box_pack_start (GTK_BOX(hbox), socket, TRUE, FALSE, 0);
 	
+	gtk_widget_set_size_request(socket, 256, 224);
+	gtk_widget_realize(socket);
+	gtk_widget_show(socket);
 	
-	// init SDL
-	if ( SDL_Init(SDL_INIT_VIDEO) < 0 )
-	{
-		fprintf(stderr, "Couldn't init SDL: %s\n", SDL_GetError());
-		gtk_main_quit();
-	}
-	
-	
+	GdkColor bg = {0, 0, 0, 0};
+	gtk_widget_modify_bg(socket, GTK_STATE_NORMAL, &bg);
 	
 	// test rendering
 	//screen = SDL_SetVideoMode(xres, yres, 0, 0);
 	//hello = SDL_LoadBMP( "hello.bmp" );
-	*/
+	
 	g_signal_connect(MainWindow, "destroy-event", quit, NULL);
 	
 		//gtk_idle_add(mainLoop, MainWindow);
@@ -1541,6 +1543,10 @@ int InitGTKSubsystem(int argc, char** argv)
 	
 
 	gtk_widget_show_all(MainWindow);
+	
+	GtkRequisition req;
+	gtk_widget_size_request(GTK_WIDGET(MainWindow), &req);
+	gtk_window_resize(GTK_WINDOW(MainWindow), req.width, req.height);
 	 
 	return 0;
 }
