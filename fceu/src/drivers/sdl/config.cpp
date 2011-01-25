@@ -169,6 +169,10 @@ InitConfig()
     config->addOption("SDL.SpecialFilter", 0);
     config->addOption("SDL.SpecialFX", 0);
 
+    // FDS options
+    config->addOption("hlefds", "SDL.FdsBiosHLE", 0);
+    config->addOption("diskchange", "SDL.FdsBiosDiskchange", 1);
+
     // network play options - netplay is broken
     config->addOption("server", "SDL.NetworkIsServer", 0);
     config->addOption('n', "net", "SDL.NetworkIP", "");

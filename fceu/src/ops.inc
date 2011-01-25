@@ -78,12 +78,17 @@ case 0x6C:
 case 0x20: /* JSR */
 	   {
 	    uint8 npc;
+	    int oldpc = _PC;
 	    npc=RdMem(_PC);
 	    _PC++;
             PUSH(_PC>>8);
             PUSH(_PC);
             _PC=RdMem(_PC)<<8;
 	    _PC|=npc;
+
+	    if (_PC >= 0xe1c7 && _PC <= 0xe7ba && oldpc < 0xe000) {
+	    	//printf("Call to BIOS at %x from %x\n", _PC, oldpc - 1);
+	    }
 	   }
            break;
 

@@ -9,6 +9,7 @@ drawing.cpp
 emufile.cpp
 fceu.cpp
 fds.cpp
+fds_bios.cpp
 file.cpp 
 filter.cpp 
 ines.cpp

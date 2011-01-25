@@ -24,6 +24,7 @@
 #include "fceu.h"
 #include "debug.h"
 #include "sound.h"
+#include "fds.h"
 #ifdef _S9XLUA_H
 #include "fceulua.h"
 #endif
@@ -56,11 +57,11 @@ static INLINE void WrMem(unsigned int A, uint8 V)
 	#endif
 }
 
-static INLINE uint8 RdRAM(unsigned int A) 
+static INLINE uint8 RdRAM(unsigned int A)
 {
   //bbit edited: this was changed so cheat substituion would work
   return(_DB=ARead[A](A));
-  // return(_DB=RAM[A]); 
+  // return(_DB=RAM[A]);
 }
 
 static INLINE void WrRAM(unsigned int A, uint8 V)
@@ -91,7 +92,7 @@ void X6502_DMW(uint32 A, uint8 V)
  uint8 VTMP=V;  \
  WrRAM(0x100+_S,VTMP);  \
  _S--;  \
-}       
+}
 
 #define POP() RdRAM(0x100+(++_S))
 
@@ -194,7 +195,7 @@ static uint8 ZNTable[256];
      _P|=l;  \
      X_ZNT(x);  \
 		}
-		 
+
 /* Icky icky thing for some undocumented instructions.  Can easily be
    broken if names of local variables are changed.
 */
@@ -333,7 +334,7 @@ static uint8 ZNTable[256];
 #define ST_IY(r)  {unsigned int A; GetIYWR(A); WrMem(A,r); break; }
 
 static uint8 CycTable[256] =
-{                             
+{
 /*0x00*/ 7,6,2,8,3,3,5,5,3,2,2,2,4,4,6,6,
 /*0x10*/ 2,5,2,8,4,4,6,6,2,4,2,7,4,4,7,7,
 /*0x20*/ 6,6,2,8,3,3,5,5,4,2,2,2,4,4,6,6,
@@ -368,7 +369,7 @@ void TriggerNMI(void)
 }
 
 void TriggerNMI2(void)
-{ 
+{
  _IRQlow|=FCEU_IQNMI2;
 }
 
@@ -412,6 +413,7 @@ void X6502_Power(void)
 
 void X6502_Run(int32 cycles)
 {
+	static int printfoo = 0;
   if(PAL)
    cycles*=15;    // 15*4=60
   else
@@ -490,6 +492,14 @@ extern int test; test++;
    _tcount=0;
    if(MapIRQHook) MapIRQHook(temp);
    FCEU_SoundCPUHook(temp);
+
+   if ((GameInfo->type == GIT_FDS) && /*emulate_fds_bios && */
+       (_PC >= 0xE000 && _PC <= 0xFFFF)) {
+	   if (FCEU_FDSBiosHook(&X) > 0) {
+		   continue;
+	   }
+   }
+
    #ifdef _S9XLUA_H
    CallRegisteredLuaMemHook(_PC, 1, 0, LUAMEMHOOK_EXEC);
    #endif

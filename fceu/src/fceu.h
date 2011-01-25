@@ -31,6 +31,9 @@ void FCEUI_Autosave(void);
 //mbg 7/23/06
 char *FCEUI_GetAboutString();
 
+extern int emulate_fds_bios;
+extern int automatic_disk_change;
+
 extern uint64 timestampbase;
 extern uint32 MMC5HackVROMMask;
 extern uint8 *MMC5HackExNTARAMPtr;
