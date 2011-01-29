@@ -44,15 +44,16 @@ int configGamepadButton(GtkButton* button, gpointer p)
 	gint x = ((gint)(glong)(p));
 	//gint x = GPOINTER_TO_INT(p);
 	char* padStr = gtk_combo_box_get_active_text(GTK_COMBO_BOX(padNoCombo));
-	int padNo = atoi(padStr);
+	int padNo = atoi(padStr) - 1;
 	char* configStr = gtk_combo_box_get_active_text(GTK_COMBO_BOX(configNoCombo));
-	int configNo = atoi(configStr);
+	int configNo = atoi(configStr) - 1;
 		
     char buf[256];
     std::string prefix;
     
     // only configure when the "Change" button is pressed in, not when it is unpressed
-    if(!gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button))) return 0;
+    if(!gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)))
+    	return 0;
     
     ButtonConfigBegin();
     
@@ -61,7 +62,7 @@ int configGamepadButton(GtkButton* button, gpointer p)
     //ConfigButton((char*)GamePadNames[x], &GamePadConfig[padNo][x]);
     DWaitButton((const uint8*)"Press a button", &GamePadConfig[padNo][x], configNo);
 
-    g_config->setOption(prefix + GamePadNames[x], GamePadConfig[padNo][x].ButtonNum[0]);
+    g_config->setOption(prefix + GamePadNames[x], GamePadConfig[padNo][x].ButtonNum[configNo]);
 
     if(GamePadConfig[padNo][x].ButtType[0] == BUTTC_KEYBOARD)
     {
@@ -74,7 +75,7 @@ int configGamepadButton(GtkButton* button, gpointer p)
     } else {
         g_config->setOption(prefix + "DeviceType", "Unknown");
     }
-    g_config->setOption(prefix + "DeviceNum", GamePadConfig[padNo][0].DeviceNum[0]);
+    g_config->setOption(prefix + "DeviceNum", GamePadConfig[padNo][x].DeviceNum[configNo]);
 
     ButtonConfigEnd();
     
