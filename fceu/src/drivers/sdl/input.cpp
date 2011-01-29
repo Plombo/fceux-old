@@ -1263,7 +1263,7 @@ UpdateFTrainer()
  * Waits for a button input and returns the information as to which
  * button was pressed.  Used in button configuration.
  */
-static int
+int
 DWaitButton(const uint8 *text,
             ButtConfig *bc,
             int wb)
