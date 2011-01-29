@@ -458,11 +458,18 @@ void openGamepadConfig()
 	GtkWidget* buttonFrame;
 	GtkWidget* buttonTable;
 	
-	win = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	win = gtk_dialog_new_with_buttons("Controller Configuration",
+									  GTK_WINDOW(MainWindow),
+									  (GtkDialogFlags)(GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT),
+									  GTK_STOCK_CLOSE,
+									  GTK_RESPONSE_DELETE_EVENT,
+									  NULL);
 	gtk_window_set_title(GTK_WINDOW(win), "Controller Configuration");
 	gtk_widget_set_size_request(win, 250, 500);
 	
-	vbox = gtk_vbox_new(FALSE, 0);
+	vbox = gtk_dialog_get_content_area(GTK_DIALOG(win));
+	gtk_box_set_homogeneous(GTK_BOX(vbox), FALSE);
+	
 	hboxPadNo = gtk_hbox_new(FALSE, 0);
 	padNoLabel = gtk_label_new("Port:");
 	configNoLabel = gtk_label_new("Config Number:");
@@ -564,9 +571,9 @@ void openGamepadConfig()
 	
 	gtk_box_pack_start(GTK_BOX(vbox), buttonFrame, TRUE, TRUE, 5);
 	
-	gtk_container_add(GTK_CONTAINER(win), vbox);
-	
 	g_signal_connect(GTK_OBJECT(win), "delete-event", G_CALLBACK(closeGamepadConfig), GINT_TO_POINTER(FCEUI_EmulationPaused()));
+	FCEUI_SetEmulationPaused(1);
+	
 	gtk_widget_show_all(win);
 	
 	return;
