@@ -762,15 +762,20 @@ ButtonConfigBegin()
  
     // reactivate the video subsystem
     if(!SDL_WasInit(SDL_INIT_VIDEO)) {
-        if(SDL_InitSubSystem(SDL_INIT_VIDEO) == -1) {
+    	if(!bcpv) {
+    		InitVideo(GameInfo);
+    	}
+        else {
+            if(SDL_InitSubSystem(SDL_INIT_VIDEO) == -1) {
                 FCEUD_Message(SDL_GetError());
                 return(0);
+            }
+            
+            // set the screen and notify the user of button configuration
+            screen = SDL_SetVideoMode(420, 200, 8, 0); 
+            SDL_WM_SetCaption("Button Config",0);
         }
     }
-
-    // set the screen and notify the user of button configuration
-    screen = SDL_SetVideoMode(420, 200, 8, 0); 
-    SDL_WM_SetCaption("Button Config",0);
 
     // XXX soules - why did we shut this down?
     // initialize the joystick subsystem
@@ -791,12 +796,12 @@ ButtonConfigEnd()
 
     // shutdown the joystick and video subsystems
     KillJoysticks();
-    SDL_QuitSubSystem(SDL_INIT_VIDEO); 
+    //SDL_QuitSubSystem(SDL_INIT_VIDEO); 
 
     // re-initialize joystick and video subsystems if they were active before
-    if(!bcpv) {
+    /*if(!bcpv) {
         InitVideo(GameInfo);
-    }
+    }*/
     if(!bcpj) {
         InitJoysticks();
     }
@@ -1281,44 +1286,55 @@ DWaitButton(const uint8 *text,
         }
     }
 
-    while(SDL_WaitEvent(&event)) {
-        switch(event.type) {
-        case SDL_KEYDOWN:
-            bc->ButtType[wb]  = BUTTC_KEYBOARD;
-            bc->DeviceNum[wb] = 0;
-            bc->ButtonNum[wb] = event.key.keysym.sym;
-            return(1);
-        case SDL_JOYBUTTONDOWN:
-            bc->ButtType[wb]  = BUTTC_JOYSTICK;
-            bc->DeviceNum[wb] = event.jbutton.which;
-            bc->ButtonNum[wb] = event.jbutton.button; 
-            return(1);
-        case SDL_JOYHATMOTION:
-            if(event.jhat.value != SDL_HAT_CENTERED) {
-                bc->ButtType[wb]  = BUTTC_JOYSTICK;
-                bc->DeviceNum[wb] = event.jhat.which;
-                bc->ButtonNum[wb] = (0x2000 | ((event.jhat.hat & 0x1F) << 8) |
-                                     event.jhat.value);
+    while(1) {
+        int done = 0;
+#ifdef _GTK
+        while(gtk_events_pending())
+            gtk_main_iteration_do(FALSE);
+#endif
+        while(SDL_PollEvent(&event)) {
+            done++;
+            switch(event.type) {
+            case SDL_KEYDOWN:
+                bc->ButtType[wb]  = BUTTC_KEYBOARD;
+                bc->DeviceNum[wb] = 0;
+                bc->ButtonNum[wb] = event.key.keysym.sym;
                 return(1);
-            }
-            break;
-        case SDL_JOYAXISMOTION: 
-            if(LastAx[event.jaxis.which][event.jaxis.axis] == 0x100000) {
-                if(abs(event.jaxis.value) < 1000) {
-                    LastAx[event.jaxis.which][event.jaxis.axis] = event.jaxis.value;
-                }
-            } else {
-                if(abs(LastAx[event.jaxis.which][event.jaxis.axis] - event.jaxis.value) >= 8192)  {
+            case SDL_JOYBUTTONDOWN:
+                bc->ButtType[wb]  = BUTTC_JOYSTICK;
+                bc->DeviceNum[wb] = event.jbutton.which;
+                bc->ButtonNum[wb] = event.jbutton.button; 
+                return(1);
+            case SDL_JOYHATMOTION:
+                if(event.jhat.value != SDL_HAT_CENTERED) {
                     bc->ButtType[wb]  = BUTTC_JOYSTICK;
-                    bc->DeviceNum[wb] = event.jaxis.which;
-                    bc->ButtonNum[wb] = (0x8000 | event.jaxis.axis |
-                                         ((event.jaxis.value < 0)
-                                          ? 0x4000 : 0));
+                    bc->DeviceNum[wb] = event.jhat.which;
+                    bc->ButtonNum[wb] = (0x2000 | ((event.jhat.hat & 0x1F) << 8) |
+                                         event.jhat.value);
                     return(1);
                 }
+                break;
+            case SDL_JOYAXISMOTION: 
+                if(LastAx[event.jaxis.which][event.jaxis.axis] == 0x100000) {
+                    if(abs(event.jaxis.value) < 1000) {
+                        LastAx[event.jaxis.which][event.jaxis.axis] = event.jaxis.value;
+                    }
+                } else {
+                    if(abs(LastAx[event.jaxis.which][event.jaxis.axis] - event.jaxis.value) >= 8192)  {
+                        bc->ButtType[wb]  = BUTTC_JOYSTICK;
+                        bc->DeviceNum[wb] = event.jaxis.which;
+                        bc->ButtonNum[wb] = (0x8000 | event.jaxis.axis |
+                                             ((event.jaxis.value < 0)
+                                              ? 0x4000 : 0));
+                        return(1);
+                    }
+                }
+                break;
+            default:
+                done--;
             }
-            break;
         }
+        if(done) break;
     }
 
     return(0);
