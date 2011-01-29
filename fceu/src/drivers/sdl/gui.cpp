@@ -34,7 +34,9 @@ extern Config *g_config;
 
 GtkWidget* MainWindow = NULL;
 GtkWidget* socket = NULL;
-GtkWidget* padNoCombo;
+GtkWidget* padNoCombo = NULL;
+GtkWidget* configNoCombo = NULL;
+GtkWidget* buttonMappings[10];
 
 // This function configures a single button on a gamepad
 int configGamepadButton(GtkButton* button, gpointer p)
@@ -440,17 +442,21 @@ void openGamepadConfig()
 	GtkWidget* vbox;
 	GtkWidget* hboxPadNo;
 	GtkWidget* padNoLabel;
+	GtkWidget* configNoLabel;
 	GtkWidget* fourScoreChk;
-	
-	GtkWidget* buttons[10];
+	GtkWidget* oppositeDirChk;
+	GtkWidget* buttonFrame;
+	GtkWidget* buttonTable;
 	
 	win = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-	gtk_window_set_title(GTK_WINDOW(win), "Gamepad Config");
+	gtk_window_set_title(GTK_WINDOW(win), "Controller Configuration");
 	gtk_widget_set_size_request(win, 250, 500);
-	vbox = gtk_vbox_new(TRUE, 4);
-	hboxPadNo = gtk_hbox_new(FALSE, 5);
-	padNoLabel = gtk_label_new("Gamepad Number:");
-	fourScoreChk = gtk_check_button_new_with_label("Enable four score");
+	vbox = gtk_vbox_new(FALSE, 0);
+	hboxPadNo = gtk_hbox_new(FALSE, 0);
+	padNoLabel = gtk_label_new("Port:");
+	configNoLabel = gtk_label_new("Config Number:");
+	fourScoreChk = gtk_check_button_new_with_label("Enable Four Score");
+	oppositeDirChk = gtk_check_button_new_with_label("Allow Up+Down / Left+Right");
 	
 	typeCombo = gtk_combo_box_new_text();
 	gtk_combo_box_append_text(GTK_COMBO_BOX(typeCombo), "gamepad");
@@ -467,8 +473,15 @@ void openGamepadConfig()
 	gtk_combo_box_append_text(GTK_COMBO_BOX(padNoCombo), "2");
 	gtk_combo_box_append_text(GTK_COMBO_BOX(padNoCombo), "3");
 	gtk_combo_box_append_text(GTK_COMBO_BOX(padNoCombo), "4");
-	
 	gtk_combo_box_set_active(GTK_COMBO_BOX(padNoCombo), 0);
+	
+	configNoCombo = gtk_combo_box_new_text();
+	gtk_combo_box_append_text(GTK_COMBO_BOX(configNoCombo), "1");
+	gtk_combo_box_append_text(GTK_COMBO_BOX(configNoCombo), "2");
+	gtk_combo_box_append_text(GTK_COMBO_BOX(configNoCombo), "3");
+	gtk_combo_box_append_text(GTK_COMBO_BOX(configNoCombo), "4");
+	gtk_combo_box_set_active(GTK_COMBO_BOX(configNoCombo), 0);
+	
 	
 	g_signal_connect(GTK_OBJECT(typeCombo), "changed", G_CALLBACK(setInputDevice), 
 		gtk_combo_box_get_active_text(GTK_COMBO_BOX(typeCombo)));
@@ -484,18 +497,61 @@ void openGamepadConfig()
 	g_signal_connect(GTK_OBJECT(fourScoreChk), "clicked", G_CALLBACK(toggleOption), (gpointer)"SDL.FourScore");
 	
 	gtk_box_pack_start(GTK_BOX(hboxPadNo), padNoLabel, TRUE, TRUE, 5);
-	gtk_box_pack_start(GTK_BOX(hboxPadNo), padNoCombo, TRUE, FALSE, 5);
-	gtk_box_pack_start(GTK_BOX(vbox), hboxPadNo, TRUE, TRUE, 5);
+	gtk_box_pack_start(GTK_BOX(hboxPadNo), padNoCombo, TRUE, TRUE, 5);
+	gtk_box_pack_start(GTK_BOX(hboxPadNo), configNoLabel, TRUE, TRUE, 5);
+	gtk_box_pack_start(GTK_BOX(hboxPadNo), configNoCombo, TRUE, TRUE, 5);
+	gtk_box_pack_start(GTK_BOX(vbox), hboxPadNo, FALSE, TRUE, 5);
 	//gtk_box_pack_start_defaults(GTK_BOX(vbox), typeCombo);
 	
-	gtk_box_pack_start(GTK_BOX(vbox), fourScoreChk, TRUE, TRUE, 5);
+	gtk_box_pack_start(GTK_BOX(vbox), fourScoreChk, FALSE, TRUE, 5);
+	gtk_box_pack_start(GTK_BOX(vbox), oppositeDirChk, FALSE, TRUE, 5);
+	
+	
 	// create gamepad buttons
+	buttonFrame = gtk_frame_new("<b><i>Buttons</i></b>");
+	gtk_label_set_use_markup(GTK_LABEL(gtk_frame_get_label_widget(GTK_FRAME(buttonFrame))), TRUE);
+	buttonTable = gtk_table_new(10, 3, FALSE);
+	gtk_table_set_col_spacings(GTK_TABLE(buttonTable), 5);
+	gtk_container_add(GTK_CONTAINER(buttonFrame), buttonTable);
 	for(int i=0; i<10; i++)
 	{
-		buttons[i] = gtk_button_new_with_label(GamePadNames[i]);
-		gtk_box_pack_start(GTK_BOX(vbox), buttons[i], TRUE, TRUE, 3);
-		gtk_signal_connect(GTK_OBJECT(buttons[i]), "clicked", G_CALLBACK(configGamepadButton), GINT_TO_POINTER(i));	
+		GtkWidget* buttonName = gtk_label_new(GamePadNames[i]);
+		GtkWidget* mappedKey = gtk_label_new(NULL);
+		GtkWidget* changeButton = gtk_toggle_button_new();
+		int padNo = 0; // FIXME: move out of this function and into a callback
+		int configNo = 0; // FIXME: see above
+		char strBuf[128];
+		
+		sprintf(strBuf, "%s:", GamePadNames[i]);
+		gtk_label_set_text(GTK_LABEL(buttonName), strBuf);
+		gtk_misc_set_alignment(GTK_MISC(buttonName), 1.0, 0.5);
+		
+		if(GamePadConfig[padNo][i].ButtType[configNo] == BUTTC_KEYBOARD)
+		{
+			sprintf(strBuf, "<span font_family=\"monospace\">%s</span>", 
+					SDL_GetKeyName((SDLKey)GamePadConfig[padNo][i].ButtonNum[configNo]));
+		}
+		else // FIXME: display joystick button/hat/axis names properly
+			strcpy(strBuf, "<span font_family=\"monospace\">Joystick</span>");
+		
+		gtk_label_set_text(GTK_LABEL(mappedKey), strBuf);
+		gtk_label_set_use_markup(GTK_LABEL(mappedKey), TRUE);
+		gtk_misc_set_alignment(GTK_MISC(mappedKey), 0.0, 0.5);
+		
+		gtk_button_set_label(GTK_BUTTON(changeButton), "Change");
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(changeButton), FALSE);
+		
+		gtk_table_attach(GTK_TABLE(buttonTable), buttonName, 0, 1, i, i+1, GTK_FILL, GTK_FILL, 0, 0);
+		gtk_table_attach(GTK_TABLE(buttonTable), mappedKey, 1, 2, i, i+1, 
+				(GtkAttachOptions)(GTK_EXPAND|GTK_FILL), (GtkAttachOptions)(GTK_EXPAND|GTK_FILL), 0, 0);
+		gtk_table_attach(GTK_TABLE(buttonTable), changeButton, 2, 3, i, i+1,
+				(GtkAttachOptions)0, (GtkAttachOptions)0, 0, 0);
+		
+		gtk_signal_connect(GTK_OBJECT(changeButton), "clicked", G_CALLBACK(configGamepadButton), GINT_TO_POINTER(i));
+		buttonMappings[i] = mappedKey;
 	}
+	
+	gtk_box_pack_start(GTK_BOX(vbox), buttonFrame, TRUE, TRUE, 5);
 	
 	gtk_container_add(GTK_CONTAINER(win), vbox);
 	
