@@ -1269,6 +1269,7 @@ void loadFdsBios ()
 			"Famicom Disk System BIOS loaded.  If you are you having issues, make sure your BIOS file is 8KB in size.");
 		gtk_dialog_run(GTK_DIALOG(d));
 		gtk_widget_destroy(d);
+
 	
 		f2<<f1.rdbuf();
 		g_free(filename);
