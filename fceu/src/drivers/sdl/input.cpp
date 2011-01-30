@@ -1265,6 +1265,72 @@ UpdateFTrainer()
 }
 
 /**
+ * Get the display name of the key or joystick button mapped to a specific 
+ * NES gamepad button.
+ * @param bc the NES gamepad's button config
+ * @param which the index of the button
+ */
+const char*
+ButtonName(const ButtConfig* bc, int which)
+{
+	static char name[256];
+	
+	switch(bc->ButtType[which])
+	{
+		case BUTTC_KEYBOARD:
+			return SDL_GetKeyName((SDLKey)bc->ButtonNum[which]);
+		case BUTTC_JOYSTICK:
+			int joyNum, inputNum;
+			const char* inputType, *inputDirection;
+			
+			joyNum = bc->DeviceNum[which];
+			
+			printf("I am a joystick button\n");
+			
+			if(bc->ButtonNum[which] & 0x8000)
+			{
+				printf("Good day, I am a axis\n");
+				
+				inputType = "Axis";
+				inputNum = bc->ButtonNum[which] & 0x3FFF;
+				inputDirection = bc->ButtonNum[which] & 0x4000 ? "-" : "+";
+			}
+			else if(bc->ButtonNum[which] & 0x2000)
+			{
+				int inputValue;
+				char direction[128] = "";
+				
+				printf("Hello, I am a hat\n");
+				
+				inputType = "Hat";
+				inputNum = (bc->ButtonNum[which] >> 8) & 0x1F;
+				inputValue = bc->ButtonNum[which] & 0xF;
+				
+				if(inputValue & SDL_HAT_UP)    strncat(direction, "Up ",    sizeof(direction));
+				if(inputValue & SDL_HAT_DOWN)  strncat(direction, "Down ",  sizeof(direction));
+				if(inputValue & SDL_HAT_LEFT)  strncat(direction, "Left ",  sizeof(direction));
+				if(inputValue & SDL_HAT_RIGHT) strncat(direction, "Right ", sizeof(direction));
+				
+				if(direction[0])
+					inputDirection = direction;
+				else
+					inputDirection = "Center";
+			}
+			else
+			{
+				inputType = "Button";
+				inputNum = bc->ButtonNum[which];
+				inputDirection = "";
+			}
+			
+			snprintf(name, sizeof(name), "Joy %d, %s %d %s", joyNum, inputType, inputNum, inputDirection);
+			printf("Hi, my name is '%s'\n", name);
+	}
+	
+	return name;
+}
+
+/**
  * Waits for a button input and returns the information as to which
  * button was pressed.  Used in button configuration.
  */
@@ -1306,7 +1372,9 @@ DWaitButton(const uint8 *text,
                 bc->ButtonNum[wb] = event.jbutton.button; 
                 return(1);
             case SDL_JOYHATMOTION:
-                if(event.jhat.value != SDL_HAT_CENTERED) {
+                if(event.jhat.value == SDL_HAT_CENTERED)
+                    done--;
+                else {
                     bc->ButtType[wb]  = BUTTC_JOYSTICK;
                     bc->DeviceNum[wb] = event.jhat.which;
                     bc->ButtonNum[wb] = (0x2000 | ((event.jhat.hat & 0x1F) << 8) |
@@ -1319,6 +1387,7 @@ DWaitButton(const uint8 *text,
                     if(abs(event.jaxis.value) < 1000) {
                         LastAx[event.jaxis.which][event.jaxis.axis] = event.jaxis.value;
                     }
+                    done--;
                 } else {
                     if(abs(LastAx[event.jaxis.which][event.jaxis.axis] - event.jaxis.value) >= 8192)  {
                         bc->ButtType[wb]  = BUTTC_JOYSTICK;
@@ -1328,6 +1397,8 @@ DWaitButton(const uint8 *text,
                                               ? 0x4000 : 0));
                         return(1);
                     }
+                    else
+                        done--;
                 }
                 break;
             default:
