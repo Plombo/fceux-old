@@ -44,10 +44,8 @@ int configGamepadButton(GtkButton* button, gpointer p)
 {
 	gint x = ((gint)(glong)(p));
 	//gint x = GPOINTER_TO_INT(p);
-	char* padStr = gtk_combo_box_get_active_text(GTK_COMBO_BOX(padNoCombo));
-	int padNo = atoi(padStr) - 1;
-	char* configStr = gtk_combo_box_get_active_text(GTK_COMBO_BOX(configNoCombo));
-	int configNo = atoi(configStr) - 1;
+	int padNo = atoi(gtk_combo_box_get_active_text(GTK_COMBO_BOX(padNoCombo))) - 1;
+	int configNo = atoi(gtk_combo_box_get_active_text(GTK_COMBO_BOX(configNoCombo))) - 1;
 		
     char buf[256];
     std::string prefix;
@@ -60,7 +58,6 @@ int configGamepadButton(GtkButton* button, gpointer p)
     
     snprintf(buf, sizeof(buf), "SDL.Input.GamePad.%d", padNo);
     prefix = buf;
-    //ConfigButton((char*)GamePadNames[x], &GamePadConfig[padNo][x]);
     DWaitButton((const uint8*)"Press a button", &GamePadConfig[padNo][x], configNo);
 
     g_config->setOption(prefix + GamePadNames[x], GamePadConfig[padNo][x].ButtonNum[configNo]);
@@ -68,15 +65,15 @@ int configGamepadButton(GtkButton* button, gpointer p)
     if(GamePadConfig[padNo][x].ButtType[0] == BUTTC_KEYBOARD)
     {
 		g_config->setOption(prefix + "DeviceType", "Keyboard");
-		
-		snprintf(buf, sizeof(buf), "<tt>%s</tt>", SDL_GetKeyName((SDLKey)GamePadConfig[padNo][x].ButtonNum[configNo]));
-		gtk_label_set_markup(GTK_LABEL(buttonMappings[x]), buf);
     } else if(GamePadConfig[padNo][x].ButtType[0] == BUTTC_JOYSTICK) {
         g_config->setOption(prefix + "DeviceType", "Joystick");
     } else {
         g_config->setOption(prefix + "DeviceType", "Unknown");
     }
     g_config->setOption(prefix + "DeviceNum", GamePadConfig[padNo][x].DeviceNum[configNo]);
+    
+    snprintf(buf, sizeof(buf), "<tt>%s</tt>", ButtonName(&GamePadConfig[padNo][x], configNo));
+	gtk_label_set_markup(GTK_LABEL(buttonMappings[x]), buf);
 
     ButtonConfigEnd();
     
@@ -445,7 +442,31 @@ gboolean closeGamepadConfig(GtkWidget* w, GdkEvent* event, gpointer p)
 	gint paused = ((gint)(glong)(p));
 	if(!paused)
 		FCEUI_SetEmulationPaused(0);
+	gtk_widget_destroy(w);
 	return FALSE;
+}
+
+void updateGamepadConfig(GtkWidget* w, gpointer p)
+{
+	int i;
+	char strBuf[128];
+	int padNo = atoi(gtk_combo_box_get_active_text(GTK_COMBO_BOX(padNoCombo))) - 1;
+	int configNo = atoi(gtk_combo_box_get_active_text(GTK_COMBO_BOX(configNoCombo))) - 1;
+	
+	for(i=0; i<10; i++)
+	{
+		GtkWidget* mappedKey = buttonMappings[i];
+		if(GamePadConfig[padNo][i].ButtType[configNo] == BUTTC_KEYBOARD)
+		{
+			snprintf(strBuf, sizeof(strBuf), "<tt>%s</tt>", 
+					SDL_GetKeyName((SDLKey)GamePadConfig[padNo][i].ButtonNum[configNo]));
+		}
+		else // FIXME: display joystick button/hat/axis names properly
+			strncpy(strBuf, "<tt>Joystick</tt>", sizeof(strBuf));
+	
+		gtk_label_set_text(GTK_LABEL(mappedKey), strBuf);
+		gtk_label_set_use_markup(GTK_LABEL(mappedKey), TRUE);
+	}
 }
 
 // creates and opens the gamepad config window
@@ -465,7 +486,7 @@ void openGamepadConfig()
 									  GTK_WINDOW(MainWindow),
 									  (GtkDialogFlags)(GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT),
 									  GTK_STOCK_CLOSE,
-									  GTK_RESPONSE_DELETE_EVENT,
+									  GTK_RESPONSE_OK,
 									  NULL);
 	gtk_window_set_title(GTK_WINDOW(win), "Controller Configuration");
 	gtk_widget_set_size_request(win, 250, 500);
@@ -495,6 +516,7 @@ void openGamepadConfig()
 	gtk_combo_box_append_text(GTK_COMBO_BOX(padNoCombo), "3");
 	gtk_combo_box_append_text(GTK_COMBO_BOX(padNoCombo), "4");
 	gtk_combo_box_set_active(GTK_COMBO_BOX(padNoCombo), 0);
+	g_signal_connect(GTK_OBJECT(padNoCombo), "changed", G_CALLBACK(updateGamepadConfig), NULL);
 	
 	configNoCombo = gtk_combo_box_new_text();
 	gtk_combo_box_append_text(GTK_COMBO_BOX(configNoCombo), "1");
@@ -502,6 +524,7 @@ void openGamepadConfig()
 	gtk_combo_box_append_text(GTK_COMBO_BOX(configNoCombo), "3");
 	gtk_combo_box_append_text(GTK_COMBO_BOX(configNoCombo), "4");
 	gtk_combo_box_set_active(GTK_COMBO_BOX(configNoCombo), 0);
+	g_signal_connect(GTK_OBJECT(padNoCombo), "changed", G_CALLBACK(updateGamepadConfig), NULL);
 	
 	
 	g_signal_connect(GTK_OBJECT(typeCombo), "changed", G_CALLBACK(setInputDevice), 
@@ -539,24 +562,12 @@ void openGamepadConfig()
 		GtkWidget* buttonName = gtk_label_new(GamePadNames[i]);
 		GtkWidget* mappedKey = gtk_label_new(NULL);
 		GtkWidget* changeButton = gtk_toggle_button_new();
-		int padNo = 0; // FIXME: move out of this function and into a callback
-		int configNo = 0; // FIXME: see above
 		char strBuf[128];
 		
 		sprintf(strBuf, "%s:", GamePadNames[i]);
 		gtk_label_set_text(GTK_LABEL(buttonName), strBuf);
 		gtk_misc_set_alignment(GTK_MISC(buttonName), 1.0, 0.5);
 		
-		if(GamePadConfig[padNo][i].ButtType[configNo] == BUTTC_KEYBOARD)
-		{
-			snprintf(strBuf, sizeof(strBuf), "<tt>%s</tt>", 
-					SDL_GetKeyName((SDLKey)GamePadConfig[padNo][i].ButtonNum[configNo]));
-		}
-		else // FIXME: display joystick button/hat/axis names properly
-			strncpy(strBuf, "<tt>Joystick</tt>", sizeof(strBuf));
-		
-		gtk_label_set_text(GTK_LABEL(mappedKey), strBuf);
-		gtk_label_set_use_markup(GTK_LABEL(mappedKey), TRUE);
 		gtk_misc_set_alignment(GTK_MISC(mappedKey), 0.0, 0.5);
 		
 		gtk_button_set_label(GTK_BUTTON(changeButton), "Change");
@@ -572,9 +583,13 @@ void openGamepadConfig()
 		buttonMappings[i] = mappedKey;
 	}
 	
+	// display the button mappings for the currently selected configuration
+	updateGamepadConfig(NULL, NULL);
+	
 	gtk_box_pack_start(GTK_BOX(vbox), buttonFrame, TRUE, TRUE, 5);
 	
 	g_signal_connect(GTK_OBJECT(win), "delete-event", G_CALLBACK(closeGamepadConfig), GINT_TO_POINTER(FCEUI_EmulationPaused()));
+	g_signal_connect(GTK_OBJECT(win), "response", G_CALLBACK(closeGamepadConfig), GINT_TO_POINTER(FCEUI_EmulationPaused()));s
 	FCEUI_SetEmulationPaused(1);
 	
 	gtk_widget_show_all(win);
@@ -992,6 +1007,7 @@ void openSoundConfig()
 	bufferHscale = gtk_hscale_new_with_range(15, 200, 2);
 	bufferLbl = gtk_label_new("Buffer size (in ms)");
 	
+
 	// sync widget with cfg 
 	g_config->getOption("SDL.Sound.BufSize", &cfgBuf);
 	gtk_range_set_value(GTK_RANGE(bufferHscale), cfgBuf);
