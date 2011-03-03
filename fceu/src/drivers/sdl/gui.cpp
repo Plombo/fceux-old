@@ -71,6 +71,7 @@ int configGamepadButton(GtkButton* button, gpointer p)
         g_config->setOption(prefix + "DeviceType", "Unknown");
     }
     g_config->setOption(prefix + "DeviceNum", GamePadConfig[padNo][x].DeviceNum[configNo]);
+    g_config->save();
     
     snprintf(buf, sizeof(buf), "<tt>%s</tt>", ButtonName(&GamePadConfig[padNo][x], configNo));
 	gtk_label_set_markup(GTK_LABEL(buttonMappings[x]), buf);
