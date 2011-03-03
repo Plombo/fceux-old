@@ -40,7 +40,10 @@
 #endif
 
 #ifdef _GTK_LITE
-#include<gtk/gtk.h>
+#include "gui.h"
+#ifdef SDL_VIDEO_DRIVER_X11
+#include <gdk/gdkx.h>
+#endif
 #endif
 
 
@@ -766,6 +769,19 @@ ButtonConfigBegin()
     		InitVideo(GameInfo);
     	}
         else {
+#if defined(_GTK) && defined(SDL_VIDEO_DRIVER_X11)
+            int noGui;
+            g_config->getOption("SDL.NoGUI", &noGui);
+            if(noGui == 0)
+            {
+                while (gtk_events_pending())
+                    gtk_main_iteration_do(FALSE);
+            
+                char SDL_windowhack[128];
+                sprintf(SDL_windowhack, "SDL_WINDOWID=%u", (unsigned int)GDK_WINDOW_XWINDOW(gtk_widget_get_window(socket)));
+                SDL_putenv(SDL_windowhack);
+            }
+#endif
             if(SDL_InitSubSystem(SDL_INIT_VIDEO) == -1) {
                 FCEUD_Message(SDL_GetError());
                 return(0);
