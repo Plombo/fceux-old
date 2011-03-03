@@ -490,7 +490,7 @@ void openGamepadConfig()
 									  GTK_RESPONSE_OK,
 									  NULL);
 	gtk_window_set_title(GTK_WINDOW(win), "Controller Configuration");
-	gtk_widget_set_size_request(win, 250, 500);
+	gtk_widget_set_size_request(win, 350, 500);
 	
 	vbox = gtk_dialog_get_content_area(GTK_DIALOG(win));
 	gtk_box_set_homogeneous(GTK_BOX(vbox), FALSE);
