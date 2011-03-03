@@ -589,7 +589,7 @@ void openGamepadConfig()
 	gtk_box_pack_start(GTK_BOX(vbox), buttonFrame, TRUE, TRUE, 5);
 	
 	g_signal_connect(GTK_OBJECT(win), "delete-event", G_CALLBACK(closeGamepadConfig), GINT_TO_POINTER(FCEUI_EmulationPaused()));
-	g_signal_connect(GTK_OBJECT(win), "response", G_CALLBACK(closeGamepadConfig), GINT_TO_POINTER(FCEUI_EmulationPaused()));s
+	g_signal_connect(GTK_OBJECT(win), "response", G_CALLBACK(closeGamepadConfig), GINT_TO_POINTER(FCEUI_EmulationPaused()));
 	FCEUI_SetEmulationPaused(1);
 	
 	gtk_widget_show_all(win);
