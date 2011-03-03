@@ -543,13 +543,13 @@ void openGamepadConfig()
 	
 	gtk_box_pack_start(GTK_BOX(hboxPadNo), padNoLabel, TRUE, TRUE, 5);
 	gtk_box_pack_start(GTK_BOX(hboxPadNo), padNoCombo, TRUE, TRUE, 5);
-	gtk_box_pack_start(GTK_BOX(hboxPadNo), configNoLabel, TRUE, TRUE, 5);
-	gtk_box_pack_start(GTK_BOX(hboxPadNo), configNoCombo, TRUE, TRUE, 5);
+	//gtk_box_pack_start(GTK_BOX(hboxPadNo), configNoLabel, TRUE, TRUE, 5);
+	//gtk_box_pack_start(GTK_BOX(hboxPadNo), configNoCombo, TRUE, TRUE, 5);
 	gtk_box_pack_start(GTK_BOX(vbox), hboxPadNo, FALSE, TRUE, 5);
 	//gtk_box_pack_start_defaults(GTK_BOX(vbox), typeCombo);
 	
 	gtk_box_pack_start(GTK_BOX(vbox), fourScoreChk, FALSE, TRUE, 5);
-	gtk_box_pack_start(GTK_BOX(vbox), oppositeDirChk, FALSE, TRUE, 5);
+	//gtk_box_pack_start(GTK_BOX(vbox), oppositeDirChk, FALSE, TRUE, 5);
 	
 	
 	// create gamepad buttons
