@@ -1301,12 +1301,8 @@ ButtonName(const ButtConfig* bc, int which)
 			
 			joyNum = bc->DeviceNum[which];
 			
-			printf("I am a joystick button\n");
-			
 			if(bc->ButtonNum[which] & 0x8000)
 			{
-				printf("Good day, I am a axis\n");
-				
 				inputType = "Axis";
 				inputNum = bc->ButtonNum[which] & 0x3FFF;
 				inputDirection = bc->ButtonNum[which] & 0x4000 ? "-" : "+";
@@ -1315,8 +1311,6 @@ ButtonName(const ButtConfig* bc, int which)
 			{
 				int inputValue;
 				char direction[128] = "";
-				
-				printf("Hello, I am a hat\n");
 				
 				inputType = "Hat";
 				inputNum = (bc->ButtonNum[which] >> 8) & 0x1F;
@@ -1338,9 +1332,6 @@ ButtonName(const ButtConfig* bc, int which)
 				inputNum = bc->ButtonNum[which];
 				inputDirection = "";
 			}
-			
-			snprintf(name, sizeof(name), "Joy %d, %s %d %s", joyNum, inputType, inputNum, inputDirection);
-			printf("Hi, my name is '%s'\n", name);
 	}
 	
 	return name;
