@@ -1814,7 +1814,9 @@ static char* menuXml =
 	"        <menuitem action='LoadStateFromAction' />"
 	"        <menuitem action='SaveStateAsAction' />"
 	"      </menu>"
+#ifdef _S9XLUA_H
 	"      <menuitem action='LoadLuaScriptAction' />"
+#endif
 	"      <separator />"
 	"      <menuitem action='ScreenshotAction' />"
 	"      <separator />"
@@ -1867,7 +1869,9 @@ static GtkActionEntry normal_entries[] = {
 	{"SavestateMenuAction", NULL, "Savestate"},
 	{"LoadStateFromAction", NULL, "Load State _From", NULL, NULL, G_CALLBACK(loadStateFrom)},
 	{"SaveStateAsAction", NULL, "Save State _As", NULL, NULL, G_CALLBACK(saveStateAs)},
+#ifdef _S9XLUA_H
 	{"LoadLuaScriptAction", NULL, "Load _Lua Script", NULL, NULL, G_CALLBACK(loadLua)},
+#endif
 	{"ScreenshotAction", NULL, "_Screenshot", "F12", NULL, G_CALLBACK(FCEUI_SaveSnapshot)},
 	{"QuitAction", GTK_STOCK_QUIT, "_Quit", "<control>Q", NULL, G_CALLBACK(quit)},
 	
