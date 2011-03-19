@@ -17,6 +17,11 @@ opts.AddVariables(
 
 env = Environment(options = opts)
 
+# Make the output look nice
+env['CCCOMSTR'] = '\033[32mCompiling $SOURCE\033[0m'
+env['CXXCOMSTR'] = '\033[32mCompiling $SOURCE\033[0m'
+env['LINKCOMSTR'] = '\033[94mLinking $TARGET\033[0m'
+
 # LSB_FIRST must be off for PPC to compile
 if platform.system == "ppc":
   env['LSB_FIRST'] = 0
